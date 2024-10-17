@@ -1,4 +1,4 @@
-import { Hono } from "jsr:@hono/hono";
+import { Hono, type Context } from "jsr:@hono/hono";
 import { serveStatic } from 'jsr:@hono/hono/deno'
 import { stream, streamText, streamSSE } from 'jsr:@hono/hono/streaming'
 import { initChat } from "jsr:@mumulhl/duckduckgo-ai-chat";
@@ -9,7 +9,7 @@ const app = new Hono();
 app.use('/*', serveStatic({ root: './views' }));
 
 // Summarize privacy policy & handle user input
-app.post('/summarize', async (c) => {
+app.post('/summarize', async (c: Context) => {
   const body = await c.req.parseBody();
 
   if (body) {
