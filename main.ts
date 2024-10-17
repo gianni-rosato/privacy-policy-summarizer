@@ -1,38 +1,22 @@
-import { Application, Router, Context } from "jsr:@oak/oak";
+import { Hono } from "jsr:@hono/hono";
+import { serveStatic } from 'jsr:@hono/hono/deno'
+import { stream, streamText, streamSSE } from 'jsr:@hono/hono/streaming'
 import { initChat } from "jsr:@mumulhl/duckduckgo-ai-chat";
 
-const app = new Application();
-const router = new Router();
+const app = new Hono();
 
 // Serve static files
-app.use(async (ctx, next) => {
-  try {
-    await ctx.send({
-      root: `${Deno.cwd()}/views`,
-      index: "index.html",
-    });
-  } catch {
-    await next();
-  }
-});
+app.use('/*', serveStatic({ root: './views' }));
 
 // Summarize privacy policy & handle user input
-router.post("/summarize", async (ctx: Context) => {
-  // const body = await ctx.request.body().value;
-  // console.log(body.blob());
+app.post('/summarize', async (c) => {
+  const body = await c.req.parseBody();
 
-  // Check if the body is form data
-  if (ctx.request.hasBody) {
-    // TODO: Get the form data (I don't know how to do this)
-    // const formData = body;
-    // const age = formData.get("age");
-    // const education = formData.get("education");
-    // const understanding = formData.get("understanding");
-    // const policyUrl = formData.get("policyUrl");
-    const age: number = 18;
-    const education: string = "college";
-    const understanding: number = 8;
-    // const policyUrl: string = "https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement"
+  if (body) {
+    const age = Number(body.age);
+    const education = String(body.education);
+    const understanding = Number(body.understanding);
+    const policyUrl = String(body.policyUrl);
 
     // Fetch the privacy policy content
     // TODO: Fetch from URL proper
@@ -43,7 +27,6 @@ router.post("/summarize", async (ctx: Context) => {
     const chat = await initChat("gpt-4o-mini");
 
     // prompt
-    // TODO: Add the user's age, education, & understanding
     const prompt = `Summarize the following privacy policy for a ${age}-year-old with ${education} education and a ${understanding}/10 understanding of privacy concepts. The user would like an answer as a bulletted list:\n\n${policyContent}`;
 
     console.log(prompt);
@@ -51,16 +34,24 @@ router.post("/summarize", async (ctx: Context) => {
     // get the summary
     const summary = await chat.fetchFull(prompt);
     console.log(summary);
-    ctx.response.body = summary;
     chat.redo();  // reset chat
+    return c.text(summary);
+
+    // TODO: Streaming code doesn't work for some reason even though
+    // I feel like it should - summary shows up but all at once. Need to
+    // look at the htmx config
+    // return streamText(c, async (stream) => {
+    //   const dataStream = chat.fetchStream(prompt);
+    //   for await (const chunk of dataStream) {
+    //     await stream.write(chunk);
+    //     console.log(chunk);
+    //   }
+    //   chat.redo();  // reset chat
+    // });
   } else {
-    ctx.response.status = 400;
-    ctx.response.body = "Invalid request body";
+    return c.text('Invalid request body', 400);
   }
 });
 
-app.use(router.routes());
-app.use(router.allowedMethods());
-
 console.log("Server running on http://localhost:8000");
-await app.listen({ port: 8000 });
+Deno.serve({ port: 8000 }, app.fetch);
