@@ -1,4 +1,4 @@
-import { Application, Router } from "jsr:@oak/oak";
+import { Application, Router, Context } from "jsr:@oak/oak";
 import { initChat } from "jsr:@mumulhl/duckduckgo-ai-chat";
 
 const app = new Application();
@@ -17,8 +17,9 @@ app.use(async (ctx, next) => {
 });
 
 // Summarize privacy policy & handle user input
-router.post("/summarize", async (ctx) => {
-  const body = ctx.request.body;
+router.post("/summarize", async (ctx: Context) => {
+  // const body = await ctx.request.body().value;
+  // console.log(body.blob());
 
   // Check if the body is form data
   if (ctx.request.hasBody) {
@@ -28,11 +29,10 @@ router.post("/summarize", async (ctx) => {
     // const education = formData.get("education");
     // const understanding = formData.get("understanding");
     // const policyUrl = formData.get("policyUrl");
-
     const age: number = 18;
     const education: string = "college";
     const understanding: number = 8;
-    const policyUrl: string = "https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement"
+    // const policyUrl: string = "https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement"
 
     // Fetch the privacy policy content
     // TODO: Fetch from URL proper
@@ -52,7 +52,7 @@ router.post("/summarize", async (ctx) => {
     const summary = await chat.fetchFull(prompt);
     console.log(summary);
     ctx.response.body = summary;
-
+    chat.redo();  // reset chat
   } else {
     ctx.response.status = 400;
     ctx.response.body = "Invalid request body";

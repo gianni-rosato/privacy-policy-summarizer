@@ -14,6 +14,6 @@ console.log(message)
 
 // Fetch the streamed reply
 const stream = chat.fetchStream("Hello");
-for await (let data of stream) {
+for await (const data of stream) {
   console.log(data)
 }
