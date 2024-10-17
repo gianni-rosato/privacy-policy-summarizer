@@ -14,7 +14,7 @@ Other considerations:
 Once the extension is installed, run the following command to interact with the application as you are programming:
 
   ```bash
-  deno run -A --watch main.ts
+  deno run --allow-net --allow-read --watch main.ts
   ```
 
 ## Useful Resources
