@@ -5,15 +5,15 @@ const chat = await initChat("gpt-4o-mini");
 
 // Fetch the full reply in one go
 let message = await chat.fetchFull("Hello");
-console.log(message)
+console.log(message);
 
 // Redo
-chat.redo()
+chat.redo();
 message = await chat.fetchFull("Hello");
-console.log(message)
+console.log(message);
 
 // Fetch the streamed reply
 const stream = chat.fetchStream("Hello");
 for await (const data of stream) {
-  console.log(data)
+  console.log(data);
 }
