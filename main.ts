@@ -28,8 +28,7 @@ app.post("/summarize", async (c: Context) => {
     const chat: Chat = await initChat("gpt-4o-mini");
 
     // prompt
-    const prompt: string =
-      'Summarize the following privacy policy for a ${age}-year-old with ${education} education and a ${understanding}/10 understanding of privacy concepts. The user would like an answer as a bulletted list:\n\n${policyContent}';
+    const prompt: string = `Summarize the following privacy policy for a ${age}-year-old with ${education} education and a ${understanding}/10 understanding of privacy concepts. The user would like an answer as a bulletted list:\n\n${policyContent}`
 
     console.log(prompt);
 
