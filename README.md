@@ -22,6 +22,11 @@ application as you are programming:
 deno run --allow-net --allow-read --watch main.ts
 ```
 
+If completions aren't working, ensure you have a `.env` file formatted like so:
+```ini
+API_KEY=...
+```
+
 ## Useful Resources
 
 - Hono web framework documentation: https://hono.dev/docs/

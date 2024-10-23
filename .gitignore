@@ -3,3 +3,6 @@ deno.lock
 
 # macOS
 .DS_Store
+
+# Environment
+.env
