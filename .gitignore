@@ -1,2 +1,5 @@
 # Deno lock file
 deno.lock
+
+# macOS
+.DS_Store

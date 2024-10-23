@@ -4,14 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Privacy Policy Summarizer</title>
-    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    <link href="/static/css/main.css" rel="stylesheet">
+    <script src="https://unpkg.com/htmx.org@2.0.3" integrity="sha384-0895/pl2MU10Hqc6jd4RvrthNlDiE9U1tWmX7WRESftEDRosgxNsQG/Ze9YMRzHq" crossorigin="anonymous"></script>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body class="bg-gray-100 p-8">
     <div
       class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl p-6"
     >
-      <h1 class="text-2xl font-bold mb-4">Privacy Policy Summarizer</h1>
+      <h1 class="text-2xl mb-4">Privacy Policy Summarizer</h1>
+      <p class="mb-4">
+        This tool aims summarize privacy policies for users via generative AI. Please provide your age, level of education, &amp; a subjective rating of your understanding of privacy concepts to achieve the most accurate results.
+      </p>
       <form
         hx-post="/summarize"
         hx-target="#summary"
@@ -25,6 +29,7 @@
             type="number"
             id="age"
             name="age"
+            min="0"
             required
             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
           />
@@ -56,19 +61,18 @@
           />
         </div>
         <div class="mb-4">
-          <label for="policyUrl" class="block text-sm font-medium text-gray-700"
-          >Privacy Policy URL</label>
-          <input
-            type="url"
-            id="policyUrl"
-            name="policyUrl"
+          <label for="policyContent" class="block text-sm font-medium text-gray-700">Privacy Policy Content</label>
+          <textarea
+            id="policyContent"
+            name="policyContent"
+            rows="6"
             required
             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-          />
+          ></textarea>
         </div>
         <button
           type="submit"
-          class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          class="w-full bg-blue-500 hover:bg-blue-400 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
         >
           Summarize
         </button>
@@ -76,12 +80,20 @@
       <div id="loading" class="htmx-indicator mt-4">
         Summarizing...
       </div>
-      <pre id="summary" class="mt-4 whitespace-pre-wrap"></pre>
+      <pre id="summary" class="mt-4 text-sm"></pre>
     </div>
 
     <script>
-      htmx.on("#summary", "htmx:beforeRequest", function (evt) {
-        evt.detail.target.innerHTML = "";
+      htmx.on("htmx:beforeRequest", function(evt) {
+        if (evt.detail.target.id === "summary") {
+          evt.detail.target.innerHTML = "";
+        }
+      });
+
+      htmx.on("htmx:afterRequest", function(evt) {
+        if (evt.detail.target.id === "summary" && evt.detail.successful) {
+          const markdown = evt.detail.xhr.response;
+        }
       });
     </script>
   </body>

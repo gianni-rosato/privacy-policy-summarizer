@@ -2,6 +2,7 @@ import { type Context, Hono } from "jsr:@hono/hono";
 import { serveStatic } from "jsr:@hono/hono/deno";
 // import { stream, streamText, streamSSE } from 'jsr:@hono/hono/streaming'
 import { type Chat, initChat } from "jsr:@mumulhl/duckduckgo-ai-chat";
+import { Renderer } from "jsr:@libs/markdown";
 
 const app = new Hono();
 
@@ -16,41 +17,25 @@ app.post("/summarize", async (c: Context) => {
     const age: number = Number(body.age);
     const education: string = String(body.education);
     const understanding: number = Number(body.understanding);
-    const policyUrl: string = String(body.policyUrl);
-
-    // Fetch the privacy policy content
-    // TODO: Fetch from URL proper
-    // const policyContent = await fetch(policyUrl).then(res => res.text());
-    const policyContent: string =
-      'GitHub, Inc. ("GitHub") is committed to protecting your privacy. We have prepared this Privacy Statement to describe our practices regarding the personal information we collect from users of our services. This Privacy Statement applies to all services offered by GitHub on the GitHub.com domain, as well as other GitHub sites, apps, communications, and services that state that they are offered under this Privacy Statement. This Privacy Statement does not apply to any services that state that they are offered under a different privacy statement.';
+    const policyContent: string = String(body.policyContent);
 
     // Initialize the chat
     const chat: Chat = await initChat("gpt-4o-mini");
 
     // prompt
-    const prompt: string = `Summarize the following privacy policy for a ${age}-year-old with ${education} education and a ${understanding}/10 understanding of privacy concepts. The user would like an answer as a bulletted list:\n\n${policyContent}`
+    const prompt: string = `Summarize the following privacy policy for a ${age}-year-old with ${education} education and a ${understanding}/10 understanding of privacy concepts. If the input is not a privacy policy, politely refuse to answer the user's query by saying "I'm sorry, but the content provided does not match my instructions." The user would like an answer in properly formatted Markdown, with relevant emojis accompanying headings for each section:\n\n${policyContent}`
 
     console.log(prompt);
 
     // get the summary
-    const summary: string = await chat.fetchFull(prompt);
+    const summary: string = await Renderer.render(await chat.fetchFull(prompt));
     console.log(summary);
+    // const markdownSummary: string = await Renderer.render(summary);
     chat.redo(); // reset chat
 
     // return the summary
     return c.text(summary);
 
-    // TODO: Streaming code doesn't work for some reason even though
-    // I feel like it should - summary shows up but all at once. Need to
-    // look at the htmx config
-    // return streamText(c, async (stream) => {
-    //   const dataStream = chat.fetchStream(prompt);
-    //   for await (const chunk of dataStream) {
-    //     await stream.write(chunk);
-    //     console.log(chunk);
-    //   }
-    //   chat.redo();  // reset chat
-    // });
   } else {
     return c.text("Invalid request body", 400);
   }
