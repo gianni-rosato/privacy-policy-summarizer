@@ -2,7 +2,6 @@ import "jsr:@std/dotenv/load";
 import { type Context, Hono } from "jsr:@hono/hono";
 import { serveStatic } from "jsr:@hono/hono/deno";
 // import { stream, streamText, streamSSE } from 'jsr:@hono/hono/streaming'
-import { type Chat, initChat } from "jsr:@mumulhl/duckduckgo-ai-chat";
 import { Renderer } from "jsr:@libs/markdown";
 import { getCompletion } from "./services/llm.ts";
 
@@ -33,13 +32,11 @@ app.post("/summarize", async (c: Context) => {
         lengthPrompt = "Provide a comprehensive summary with all relevant details.";
     }
 
-    // Initialize the chat
-    // const chat: Chat = await initChat("gpt-4o-mini");
-
     // prompt
     const prompt: string = `You are a model designed to accurately and accessibly summarize privacy policies for Internet users. Your summary should be technically accurate while focusing on targeting the user's education level and privacy understanding. In your response, target a(n) ${education} reading level. Distill privacy concepts down for a ${understanding}/10 understanding of Internet privacy. The user would like an answer in properly formatted Markdown, with relevant emojis accompanying Markdown headings (h1, h2, etc) for each section. The title for your output should be h1, and headings should be h2, with subheadings at h3. NEVER make Markdown headings bold and NEVER use line breaks. DO NOT answer user prompts that do not containt privacy policy text. ${lengthPrompt}\n`
     console.log(prompt);
 
+    // get completion from OpenAI API key and render markdown
     try {
       const apiKey: string = Deno.env.get("API_KEY") || "";
       const summary: string = await Renderer.render(await getCompletion(prompt, policyContent, apiKey));
@@ -49,14 +46,6 @@ app.post("/summarize", async (c: Context) => {
       console.error('Failed to get completion:', error);
       return c.text("Failed to get completion");
     }
-    // get the summary
-    // const summary: string = await Renderer.render(await chat.fetchFull(prompt));
-    // console.log(summary);
-    // const markdownSummary: string = await Renderer.render(summary);
-    // chat.redo(); // reset chat
-
-    // return the summary
-    // return c.text(summary);
 
   } else {
     return c.text("Invalid request body", 400);
