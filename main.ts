@@ -8,7 +8,9 @@ import { getCompletion } from "./services/llm.ts";
 const app = new Hono();
 
 // Serve static files
-app.use("/*", serveStatic({ root: "./views" }));
+app.use("/", serveStatic({ root: "./views", path: "index.html" }));
+app.use("/compare.html", serveStatic({ root: "./views", path: "compare.html" }));
+app.use("/static/*", serveStatic({ root: "./views" }));
 
 // Summarize privacy policy & handle user input
 app.post("/summarize", async (c: Context) => {
