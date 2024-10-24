@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy Policy Comparison</title>
+    <link href="/static/css/main.css" rel="stylesheet">
+    <script src="https://unpkg.com/htmx.org@2.0.3" integrity="sha384-0895/pl2MU10Hqc6jd4RvrthNlDiE9U1tWmX7WRESftEDRosgxNsQG/Ze9YMRzHq" crossorigin="anonymous"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <nav class="mb-8 mx-auto text-center bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl p-1">
+    <a href="/" class="text-blue-500 hover:text-blue-700 mr-4">Summarizer</a>
+    <a href="/compare.html" class="text-blue-500 hover:text-blue-700">Comparison Tool</a>
+  </nav>
+  <body class="bg-gray-100 p-8">
+    <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-md overflow-hidden p-6">
+      <h1 class="text-2xl mb-4">Privacy Policy Comparison Tool</h1>
+      <p class="mb-4">
+        Compare two privacy policies side by side. Please provide your details and both privacy policies to compare.
+      </p>
+      <form
+        hx-post="/compare"
+        hx-target="#comparison"
+        hx-indicator="#loading"
+        hx-swap="beforeend"
+      >
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div>
+            <label for="age" class="block text-sm font-medium text-gray-700">Age</label>
+            <input
+              type="number"
+              id="age"
+              name="age"
+              min="18"
+              required
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+            />
+          </div>
+          <div>
+            <label for="education" class="block text-sm font-medium text-gray-700">Level of Education</label>
+            <input
+              type="text"
+              id="education"
+              name="education"
+              required
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+            />
+          </div>
+          <div>
+            <label for="understanding" class="block text-sm font-medium text-gray-700">Privacy Understanding (1-10)</label>
+            <input
+              type="text"
+              id="understanding"
+              name="understanding"
+              required
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+            />
+          </div>
+        </div>
+        <!-- <div class="my-4">
+          <label for="understanding" class="block text-sm font-medium text-gray-700">Privacy Understanding (1-10)</label>
+          <input
+            type="number"
+            id="understanding"
+            name="understanding"
+            min="1"
+            max="10"
+            required
+            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+          />
+        </div> -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div>
+            <label for="policyContent1" class="block text-sm font-medium text-gray-700">First Privacy Policy</label>
+            <textarea
+              id="policyContent1"
+              name="policyContent1"
+              rows="6"
+              required
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+            ></textarea>
+          </div>
+          <div>
+            <label for="policyContent2" class="block text-sm font-medium text-gray-700">Second Privacy Policy</label>
+            <textarea
+              id="policyContent2"
+              name="policyContent2"
+              rows="6"
+              required
+              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+            ></textarea>
+          </div>
+        </div>
+        <button
+          type="submit"
+          class="w-full bg-blue-500 hover:bg-blue-400 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        >
+          Compare Policies
+        </button>
+      </form>
+      <div id="loading" class="htmx-indicator mt-4">
+        Comparing policies...
+      </div>
+      <pre id="comparison" class="mt-4 text-sm"></pre>
+    </div>
+
+    <script>
+      htmx.on("htmx:beforeRequest", function(evt) {
+        if (evt.detail.target.id === "comparison") {
+          evt.detail.target.innerHTML = "";
+        }
+      });
+
+      htmx.on("htmx:afterRequest", function(evt) {
+        if (evt.detail.target.id === "comparison" && evt.detail.successful) {
+          const markdown = evt.detail.xhr.response;
+        }
+      });
+    </script>
+  </body>
+</html>
