@@ -19,7 +19,7 @@ Once the extension is installed, run the following command to interact with the
 application as you are programming:
 
 ```bash
-deno run --allow-net --allow-read --watch main.ts
+deno run --allow-net --allow-read --allow-env --watch main.ts
 ```
 
 If completions aren't working, ensure you have a `.env` file formatted like so:
