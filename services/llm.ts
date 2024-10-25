@@ -1,38 +1,60 @@
 interface OpenRouterResponse {
-    choices: {
-      message: {
-        content: string;
-      };
-    }[];
+  choices: {
+    message: {
+      content: string;
+    };
+  }[];
+}
+
+function getModelString(modelSpeed: string): string {
+  switch (modelSpeed) {
+    case "slow":
+      return "meta-llama/llama-3.1-405b-instruct:free"; // 100 t/s
+    case "medium":
+      return "meta-llama/llama-3.1-70b-instruct:free"; // 270 t/s
+    default:
+      return "meta-llama/llama-3.2-3b-instruct:free"; // 1400 t/s
   }
-  
-export async function getCompletion(prompt: string, policyContent: string): Promise<string> {
+}
+
+export async function getCompletion(
+  prompt: string,
+  policyContent: string,
+  modelSpeed: string = "fast",
+): Promise<string> {
+  const modelString: string = getModelString(modelSpeed);
+  console.log("Selected model:", modelString);
   const apiKey: string = Deno.env.get("API_KEY") || "";
   try {
-    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Authorization": `Bearer ${apiKey}`,
-        "Content-Type": "application/json"
+    const response = await fetch(
+      "https://openrouter.ai/api/v1/chat/completions",
+      {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${apiKey}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          // "model": "meta-llama/llama-3.2-3b-instruct:free",
+          // "model": "meta-llama/llama-3.1-70b-instruct:free",
+          // "model": "meta-llama/llama-3.1-405b-instruct:free",
+          "model": modelString,
+          "messages": [
+            {
+              "role": "system",
+              "content": `${prompt}`,
+            },
+            {
+              "role": "user",
+              "content": `${policyContent}`,
+            },
+          ],
+          "top_p": 1,
+          "temperature": 1,
+          "repetition_penalty": 1,
+        }),
       },
-      body: JSON.stringify({
-        "model": "meta-llama/llama-3.1-70b-instruct:free",
-        // "model": "meta-llama/llama-3.2-3b-instruct:free",
-        "messages": [
-          {
-            "role": "system",
-            "content": `${prompt}`
-          },
-          {
-            "role": "user",
-            "content": `${policyContent}`
-          }
-        ],
-        "top_p": 1,
-        "temperature": 1,
-        "repetition_penalty": 1,
-      })
-    });
+    );
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -41,13 +63,16 @@ export async function getCompletion(prompt: string, policyContent: string): Prom
     const data: OpenRouterResponse = await response.json();
     return data.choices[0].message.content;
   } catch (error) {
-    console.error('Error getting completion:', error);
+    console.error("Error getting completion:", error);
     throw error;
   }
 }
 
-export function getSummaryPrompt(education_level: string, privacy_understanding: number, user_age: number): string {
-
+export function getSummaryPrompt(
+  education_level: string,
+  privacy_understanding: number,
+  user_age: number,
+): string {
   const summaryPrompt: string = `
   # System Context
   You are a specialized privacy policy analyzer and summarizer, trained to make complex legal privacy policy documents accessible to users of varying educational backgrounds and privacy understanding. Your goal is to provide clear, accurate summaries while maintaining the essential meaning of privacy policies.
@@ -86,6 +111,7 @@ export function getSummaryPrompt(education_level: string, privacy_understanding:
   - Highlight user rights and important actions
   - Maintain a neutral, informative tone
   - Flag critical privacy implications
+  - Never refer to the policy provider as "we", "our", or "us"; always use the third person
 
   # Response Template
   \`\`\`markdown
@@ -165,7 +191,11 @@ export function getSummaryPrompt(education_level: string, privacy_understanding:
   return summaryPrompt;
 }
 
-export function getComparisonPrompt(education_level: string, privacy_understanding: number, user_age: number) {
+export function getComparisonPrompt(
+  education_level: string,
+  privacy_understanding: number,
+  user_age: number,
+) {
   const comparisonPrompt: string = `
   # System Context
   You are a specialized privacy policy comparison analyst, designed to identify and explain key differences and similarities between privacy policies in a way that's accessible to users with varying levels of education and privacy understanding. Your analysis should highlight meaningful changes or variations that impact user privacy and data rights.
@@ -190,6 +220,7 @@ export function getComparisonPrompt(education_level: string, privacy_understandi
     - Headings (#, ##, ###, etc.) should never be bold.
     - Preserve the emoji icons for each section.
     - Maintain a clear, organized structure.
+    - Never refer to the policies as "Policy A" or "Policy B" in the final output; use the actual policy/company names.
 
   3. Adapt complexity based on provided variables:
     - Education Level: Adjust language complexity
@@ -302,6 +333,6 @@ export function getComparisonPrompt(education_level: string, privacy_understandi
   7. Consider context of user demographics
 
   Remember: Focus on meaningful differences that impact user privacy while maintaining appropriate complexity for the user's background.
-  `
+  `;
   return comparisonPrompt;
 }

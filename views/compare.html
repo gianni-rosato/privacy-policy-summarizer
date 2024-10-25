@@ -4,19 +4,30 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Privacy Policy Comparison</title>
-    <link href="/static/css/main.css" rel="stylesheet">
-    <script src="https://unpkg.com/htmx.org@2.0.3" integrity="sha384-0895/pl2MU10Hqc6jd4RvrthNlDiE9U1tWmX7WRESftEDRosgxNsQG/Ze9YMRzHq" crossorigin="anonymous"></script>
+    <link href="/static/css/main.css" rel="stylesheet" />
+    <script
+      src="https://unpkg.com/htmx.org@2.0.3"
+      integrity="sha384-0895/pl2MU10Hqc6jd4RvrthNlDiE9U1tWmX7WRESftEDRosgxNsQG/Ze9YMRzHq"
+      crossorigin="anonymous"
+    ></script>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <nav class="mb-8 mx-auto text-center bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl p-1">
+  <nav
+    class="mb-8 mx-auto text-center bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl p-1"
+  >
     <a href="/" class="text-blue-500 hover:text-blue-700 mr-4">Summarizer</a>
-    <a href="/compare.html" class="text-blue-500 hover:text-blue-700">Comparison Tool</a>
+    <a href="/compare.html" class="text-blue-500 hover:text-blue-700"
+    >Comparison Tool</a>
   </nav>
   <body class="bg-gray-100 p-8">
-    <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-md overflow-hidden p-6">
+    <div
+      class="max-w-4xl mx-auto bg-white rounded-xl shadow-md overflow-hidden p-6"
+    >
       <h1 class="text-2xl mb-4">Privacy Policy Comparison Tool</h1>
       <p class="mb-4">
-        Compare two privacy policies side by side. Please provide your details and both privacy policies to compare.
+        Compare two privacy policies side by side with generative AI. Please
+        provide your age, level of education, & a subjective rating of your
+        understanding of privacy concepts to achieve the most accurate results.
       </p>
       <form
         hx-post="/compare"
@@ -24,11 +35,14 @@
         hx-indicator="#loading"
         hx-swap="beforeend"
       >
-      <div id="ageWarning" class="text-red-500 text-sm mt-1 hidden">⚠️ You must be 18 or older to use this tool. Ages below 18 are available as input for research purposes only.
-      </div>
+        <div id="ageWarning" class="text-red-500 text-sm mt-1 hidden">
+          ⚠️ You must be 18 or older to use this tool. Ages below 18 are
+          available as input for research purposes only.
+        </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
-            <label for="age" class="block text-sm font-medium text-gray-700">Age</label>
+            <label for="age" class="block text-sm font-medium text-gray-700"
+            >Age</label>
             <input
               type="number"
               id="age"
@@ -39,7 +53,10 @@
             />
           </div>
           <div>
-            <label for="education" class="block text-sm font-medium text-gray-700">Level of Education</label>
+            <label
+              for="education"
+              class="block text-sm font-medium text-gray-700"
+            >Level of Education</label>
             <input
               type="text"
               id="education"
@@ -49,7 +66,10 @@
             />
           </div>
           <div>
-            <label for="understanding" class="block text-sm font-medium text-gray-700">Privacy Understanding (1-10)</label>
+            <label
+              for="understanding"
+              class="block text-sm font-medium text-gray-700"
+            >Privacy Understanding (1-10)</label>
             <input
               type="text"
               id="understanding"
@@ -59,21 +79,32 @@
             />
           </div>
         </div>
-        <!-- <div class="my-4">
-          <label for="understanding" class="block text-sm font-medium text-gray-700">Privacy Understanding (1-10)</label>
-          <input
-            type="number"
-            id="understanding"
-            name="understanding"
-            min="1"
-            max="10"
+        <div class="mb-4">
+          <label
+            for="modelSpeed"
+            class="block text-sm font-medium text-gray-700"
+          >Processing Speed</label>
+          <select
+            id="modelSpeed"
+            name="modelSpeed"
             required
             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-          />
-        </div> -->
+          >
+            <option value="fast" selected>Fast (Most Responsive)</option>
+            <option value="medium">Medium (Balanced)</option>
+            <option value="slow">Slow (Most Accurate)</option>
+          </select>
+          <p class="mt-1 text-sm text-gray-500">
+            Select processing speed based on your needs. Faster processing may
+            result in less detailed analysis.
+          </p>
+        </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           <div>
-            <label for="policyContent1" class="block text-sm font-medium text-gray-700">First Privacy Policy</label>
+            <label
+              for="policyContent1"
+              class="block text-sm font-medium text-gray-700"
+            >First Privacy Policy</label>
             <textarea
               id="policyContent1"
               name="policyContent1"
@@ -83,7 +114,10 @@
             ></textarea>
           </div>
           <div>
-            <label for="policyContent2" class="block text-sm font-medium text-gray-700">Second Privacy Policy</label>
+            <label
+              for="policyContent2"
+              class="block text-sm font-medium text-gray-700"
+            >Second Privacy Policy</label>
             <textarea
               id="policyContent2"
               name="policyContent2"
@@ -107,25 +141,25 @@
     </div>
 
     <script>
-      document.getElementById('age').addEventListener('input', function(e) {
-        const ageWarning = document.getElementById('ageWarning');
-        
+      document.getElementById("age").addEventListener("input", function (e) {
+        const ageWarning = document.getElementById("ageWarning");
+
         switch (true) {
           case this.value < 18:
-            ageWarning.classList.remove('hidden');
+            ageWarning.classList.remove("hidden");
             break;
           default:
-            ageWarning.classList.add('hidden');
+            ageWarning.classList.add("hidden");
         }
       });
 
-      htmx.on("htmx:beforeRequest", function(evt) {
+      htmx.on("htmx:beforeRequest", function (evt) {
         if (evt.detail.target.id === "comparison") {
           evt.detail.target.innerHTML = "";
         }
       });
 
-      htmx.on("htmx:afterRequest", function(evt) {
+      htmx.on("htmx:afterRequest", function (evt) {
         if (evt.detail.target.id === "comparison" && evt.detail.successful) {
           const markdown = evt.detail.xhr.response;
         }

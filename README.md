@@ -23,6 +23,7 @@ deno run --allow-net --allow-read --allow-env --watch main.ts
 ```
 
 If completions aren't working, ensure you have a `.env` file formatted like so:
+
 ```ini
 API_KEY=...
 ```

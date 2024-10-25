@@ -1,41 +1,41 @@
 @font-face {
-  font-family: 'Onest';
+  font-family: "Onest";
   font-style: normal;
   font-weight: 400;
-  src: url('/static/fonts/Onest.woff2') format('woff2');
+  src: url("/static/fonts/Onest.woff2") format("woff2");
 }
 @font-face {
-  font-family: 'Onest Bold';
+  font-family: "Onest Bold";
   font-style: normal;
   font-weight: 400;
-  src: url('/static/fonts/Onest-Bold.woff2') format('woff2');
+  src: url("/static/fonts/Onest-Bold.woff2") format("woff2");
 }
 @font-face {
-  font-family: 'Hubot Sans';
+  font-family: "Hubot Sans";
   font-style: normal;
   font-weight: 600;
-  src: url('/static/fonts/HubotSans-Bold.woff2') format('woff2');
+  src: url("/static/fonts/HubotSans-Bold.woff2") format("woff2");
 }
 @font-face {
-  font-family: 'Monaspace Neon';
+  font-family: "Monaspace Neon";
   font-style: normal;
   font-weight: 400;
-  src: url('/static/fonts/MonaspaceNeon.woff2') format('woff2');
+  src: url("/static/fonts/MonaspaceNeon.woff2") format("woff2");
 }
 @font-face {
-  font-family: 'Monaspace Neon Bold';
+  font-family: "Monaspace Neon Bold";
   font-style: normal;
   font-weight: 400;
-  src: url('/static/fonts/MonaspaceNeon-Bold.woff2') format('woff2');
+  src: url("/static/fonts/MonaspaceNeon-Bold.woff2") format("woff2");
 }
 body {
-  font-family: 'Onest', sans-serif;
+  font-family: "Onest", sans-serif;
 }
 h1, h2, h3, h4, h5, h6, strong {
-  font-family: 'Onest Bold', sans-serif;
+  font-family: "Onest Bold", sans-serif;
 }
 #summary {
-  font-family: 'Monaspace Neon', monospace;
+  font-family: "Monaspace Neon", monospace;
   white-space: pre-wrap;
   white-space: -moz-pre-wrap;
   white-space: -pre-wrap;
@@ -59,40 +59,40 @@ h1, h2, h3, h4, h5, h6, strong {
   display: block;
 }
 #summary h1 {
-  font-family: 'Hubot Sans', sans-serif;
+  font-family: "Hubot Sans", sans-serif;
   font-size: 1.7rem;
   line-height: 2.0rem;
   font-weight: 600;
   color: oklch(44% 0.225 260);
 }
 #summary h2 {
-  font-family: 'Hubot Sans', sans-serif;
+  font-family: "Hubot Sans", sans-serif;
   font-size: 1.5rem;
   line-height: 1.7rem;
   font-weight: 600;
   color: oklch(44% 0.225 260);
 }
 #summary h3 {
-  font-family: 'Hubot Sans', sans-serif;
+  font-family: "Hubot Sans", sans-serif;
   font-size: 1.2rem;
   line-height: 1.5rem;
   font-weight: 600;
   color: oklch(44% 0.225 260);
 }
 #summary h4, h5, h6 {
-  font-family: 'Hubot Sans', sans-serif;
+  font-family: "Hubot Sans", sans-serif;
   font-size: 1rem;
   line-height: 1.2rem;
   font-weight: 600;
   color: oklch(44% 0.225 260);
 }
 #summary strong {
-  font-family: 'Monaspace Neon Bold', monospace;
+  font-family: "Monaspace Neon Bold", monospace;
   font-weight: 400;
   color: black;
 }
 #comparison {
-  font-family: 'Monaspace Neon', monospace;
+  font-family: "Monaspace Neon", monospace;
   white-space: pre-wrap;
   white-space: -moz-pre-wrap;
   white-space: -pre-wrap;
@@ -116,35 +116,35 @@ h1, h2, h3, h4, h5, h6, strong {
   display: block;
 }
 #comparison h1 {
-  font-family: 'Hubot Sans', sans-serif;
+  font-family: "Hubot Sans", sans-serif;
   font-size: 1.7rem;
   line-height: 2.0rem;
   font-weight: 600;
   color: oklch(44% 0.225 260);
 }
 #comparison h2 {
-  font-family: 'Hubot Sans', sans-serif;
+  font-family: "Hubot Sans", sans-serif;
   font-size: 1.5rem;
   line-height: 1.7rem;
   font-weight: 600;
   color: oklch(44% 0.225 260);
 }
 #comparison h3 {
-  font-family: 'Hubot Sans', sans-serif;
+  font-family: "Hubot Sans", sans-serif;
   font-size: 1.2rem;
   line-height: 1.5rem;
   font-weight: 600;
   color: oklch(44% 0.225 260);
 }
 #comparison h4, h5, h6 {
-  font-family: 'Hubot Sans', sans-serif;
+  font-family: "Hubot Sans", sans-serif;
   font-size: 1rem;
   line-height: 1.2rem;
   font-weight: 600;
   color: oklch(44% 0.225 260);
 }
 #comparison strong {
-  font-family: 'Monaspace Neon Bold', monospace;
+  font-family: "Monaspace Neon Bold", monospace;
   font-weight: 400;
   color: black;
 }
