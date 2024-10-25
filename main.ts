@@ -3,13 +3,62 @@ import { type Context, Hono } from "jsr:@hono/hono";
 import { serveStatic } from "jsr:@hono/hono/deno";
 // import { stream, streamText, streamSSE } from 'jsr:@hono/hono/streaming'
 import { Renderer } from "jsr:@libs/markdown";
+import { createGitHubOAuthConfig, createHelpers } from "jsr:@deno/kv-oauth";
 import {
   getComparisonPrompt,
   getCompletion,
   getSummaryPrompt,
 } from "./services/llm.ts";
+import {
+  type Bindings,
+  type Variables,
+  signIn,
+  handleCallback,
+  getSessionId,
+  signOut,
+} from "./services/auth.ts";
 
-const app = new Hono();
+const app = new Hono<{
+  Bindings: Bindings;
+  Variables: Variables;
+}>();
+
+// Authentication middleware
+app.use('/api/*', async (c, next) => {
+  const sessionId = await getSessionId(c.req.raw);
+  if (!sessionId) {
+    return new Response("Unauthorized", { status: 401 });
+  }
+  // Store sessionId in variables for use in handlers
+  c.set('sessionId', sessionId);
+  await next();
+});
+
+// OAuth routes
+app.get("/oauth/signin", async (c) => {
+  return await signIn(c.req.raw);
+});
+
+app.get("/oauth/callback", async (c) => {
+  const { response, sessionId } = await handleCallback(c.req.raw);
+  if (sessionId) {
+    c.set('sessionId', sessionId);
+  }
+  return response;
+});
+
+app.get("/oauth/signout", async (c) => {
+  return await signOut(c.req.raw);
+});
+
+// Protected route checker
+app.get("/protected-route", async (c) => {
+  const sessionId = await getSessionId(c.req.raw);
+  if (!sessionId) {
+    return new Response("Unauthorized", { status: 401 });
+  }
+  return new Response("Authorized", { status: 200 });
+});
 
 // Serve static files
 app.use("/", serveStatic({ root: "./views", path: "index.html" }));
@@ -20,9 +69,8 @@ app.use(
 app.use("/static/*", serveStatic({ root: "./views" }));
 
 // Summarize privacy policy & handle user input
-app.post("/summarize", async (c: Context) => {
+app.post("/api/summarize", async (c) => {
   const body = await c.req.parseBody();
-
   if (body) {
     const age: number = Number(body.age);
     const education: string = String(body.education);
@@ -30,30 +78,24 @@ app.post("/summarize", async (c: Context) => {
     const policyContent: string = String(body.policyContent);
     const modelSpeed: string = String(body.modelSpeed);
 
-    // prompt
     const prompt: string = getSummaryPrompt(education, understanding, age);
 
-    // get completion from OpenAI API key and render markdown
     try {
-      // const apiKey: string = Deno.env.get("API_KEY") || "";
       const summary: string = await Renderer.render(
         await getCompletion(prompt, policyContent, modelSpeed),
       );
-      console.log(summary);
       return c.text(summary);
     } catch (error) {
       console.error("Failed to get completion:", error);
-      return c.text("Failed to get completion");
+      return c.text("Failed to get completion", 500);
     }
-  } else {
-    return c.text("Invalid request body", 400);
   }
+  return c.text("Invalid request body", 400);
 });
 
 // Compare privacy policies
-app.post("/compare", async (c: Context) => {
+app.post("/api/compare", async (c) => {
   const body = await c.req.parseBody();
-
   if (body) {
     const age: number = Number(body.age);
     const education: string = String(body.education);
@@ -62,24 +104,32 @@ app.post("/compare", async (c: Context) => {
     const policyContent2: string = String(body.policyContent2);
     const modelSpeed: string = String(body.modelSpeed);
 
-    // comparison prompt
     const prompt: string = getComparisonPrompt(education, understanding, age);
     const policyContent: string = "First privacy policy:\n\n" + policyContent1 +
       "Second privacy policy:\n\n" + policyContent2;
 
     try {
-      // const apiKey: string = Deno.env.get("API_KEY") || "";
       const comparison: string = await Renderer.render(
         await getCompletion(prompt, policyContent, modelSpeed),
       );
       return c.text(comparison);
     } catch (error) {
       console.error("Failed to get completion:", error);
-      return c.text("Failed to get comparison");
+      return c.text("Failed to get comparison", 500);
     }
-  } else {
-    return c.text("Invalid request body", 400);
   }
+  return c.text("Invalid request body", 400);
+});
+
+// Error handling
+app.onError((err, c) => {
+  console.error(`${err}`);
+  return c.text('An error occurred', 500);
+});
+
+// 404 handling
+app.notFound((c) => {
+  return c.text('Not found', 404);
 });
 
 console.log("Server running on http://localhost:8000");

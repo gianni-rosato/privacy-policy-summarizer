@@ -20,6 +20,37 @@
     >Comparison Tool</a>
   </nav>
   <body class="bg-gray-100 p-8">
+    <div 
+      id="auth-banner" 
+      class="bg-blue-100 p-4 text-center"
+      hx-get="/protected-route"
+      hx-trigger="load"
+      hx-swap="outerHTML"
+    >
+      Loading authentication status...
+    </div>
+
+    <!-- Template for authenticated state -->
+    <template id="authenticated-banner">
+      <div class="bg-green-100 p-4 text-center">
+        <span class="text-green-800">✓ Signed in with GitHub</span>
+        <a 
+          href="/oauth/signout"
+          class="ml-4 text-red-600 hover:text-red-800 underline"
+        >Sign Out</a>
+      </div>
+    </template>
+
+    <!-- Template for unauthenticated state -->
+    <template id="unauthenticated-banner">
+      <div class="bg-yellow-100 p-4 text-center">
+        <span class="text-yellow-800">You need to sign in to use this tool</span>
+        <a 
+          href="/oauth/signin"
+          class="ml-4 text-blue-600 hover:text-blue-800 underline"
+        >Sign in with GitHub</a>
+      </div>
+    </template>
     <div
       class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl p-6"
     >
@@ -31,7 +62,7 @@
         results.
       </p>
       <form
-        hx-post="/summarize"
+        hx-post="/api/summarize"
         hx-target="#summary"
         hx-indicator="#loading"
         hx-swap="beforeend"
@@ -146,6 +177,27 @@
       htmx.on("htmx:afterRequest", function (evt) {
         if (evt.detail.target.id === "summary" && evt.detail.successful) {
           const markdown = evt.detail.xhr.response;
+        }
+      });
+    </script>
+    <script>
+      document.addEventListener('htmx:afterRequest', function(evt) {
+        const authBanner = document.getElementById('auth-banner');
+        
+        // Handle authentication check response
+        if (evt.detail.pathInfo.requestPath === '/protected-route') {
+          if (evt.detail.xhr.status === 200) {
+            // User is authenticated
+            authBanner.outerHTML = document.getElementById('authenticated-banner').innerHTML;
+          } else {
+            // User is not authenticated
+            authBanner.outerHTML = document.getElementById('unauthenticated-banner').innerHTML;
+          }
+        }
+        
+        // Handle unauthorized responses for any request
+        if (evt.detail.xhr.status === 401) {
+          window.location.href = '/oauth/signin?success_url=' + encodeURIComponent(window.location.pathname);
         }
       });
     </script>

@@ -1,11 +1,10 @@
 {
   "tasks": {
-    "dev": "deno run --allow-net --allow-read --allow-env --watch main.ts"
+    "dev": "deno run --unstable-kv --allow-net --allow-read --allow-env --watch main.ts"
   },
   "imports": {
     "@hono/hono": "jsr:@hono/hono@^4.6.5",
     "@libs/markdown": "jsr:@libs/markdown@^2.0.0",
-    "@mumulhl/duckduckgo-ai-chat": "jsr:@mumulhl/duckduckgo-ai-chat@^3.0.0",
     "@std/assert": "jsr:@std/assert@^1.0.6"
   }
 }
