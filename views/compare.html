@@ -24,6 +24,8 @@
         hx-indicator="#loading"
         hx-swap="beforeend"
       >
+      <div id="ageWarning" class="text-red-500 text-sm mt-1 hidden">⚠️ You must be 18 or older to use this tool. Ages below 18 are available as input for research purposes only.
+      </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
             <label for="age" class="block text-sm font-medium text-gray-700">Age</label>
@@ -31,7 +33,7 @@
               type="number"
               id="age"
               name="age"
-              min="18"
+              min="0"
               required
               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
             />
@@ -105,6 +107,18 @@
     </div>
 
     <script>
+      document.getElementById('age').addEventListener('input', function(e) {
+        const ageWarning = document.getElementById('ageWarning');
+        
+        switch (true) {
+          case this.value < 18:
+            ageWarning.classList.remove('hidden');
+            break;
+          default:
+            ageWarning.classList.add('hidden');
+        }
+      });
+
       htmx.on("htmx:beforeRequest", function(evt) {
         if (evt.detail.target.id === "comparison") {
           evt.detail.target.innerHTML = "";
