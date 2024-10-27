@@ -157,8 +157,8 @@ export function getSummaryPrompt(
   # Variables Legend
   Education Level:
   - elementary: Very simple words, short sentences
-  - middle school or equivalent: Basic terms, clear explanations
-  - high school or equivalent: Moderately complex terms, clear explanations
+  - middle school or equivalent: Basic terms, short explanations
+  - high school or equivalent: Basic terms, clear explanations
   - undergraduate, college, or equivalent: Professional terms, detailed explanations
   - graduate or equivalent: Technical terms, in-depth explanations
   - expert, PhD, or equivalent: Full technical/legal terminology, in-depth lengthy explanations
@@ -300,8 +300,8 @@ export function getComparisonPrompt(
   # Variables Legend
   Education Level:
   - elementary: Very simple words, short sentences
-  - middle school or equivalent: Basic terms, clear explanations
-  - high school or equivalent: Moderately complex terms, clear explanations
+  - middle school or equivalent: Basic terms, short explanations
+  - high school or equivalent: Basic terms, clear explanations
   - undergraduate, college, or equivalent: Professional terms, detailed explanations
   - graduate or equivalent: Technical terms, in-depth explanations
   - expert, PhD, or equivalent: Full technical/legal terminology, in-depth lengthy explanations
