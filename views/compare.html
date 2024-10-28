@@ -11,29 +11,36 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'media',
+        theme: {
+          extend: {
+            animation: {
+              'spin-slow': 'spin 3s linear infinite',
+            }
+          }
+        }
+      }
+    </script>
   </head>
-  <nav
-    class="mb-8 mx-auto text-center bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl p-1"
-  >
-    <a href="/" class="text-blue-500 hover:text-blue-700 mr-4">Summarizer</a>
-    <a href="/compare.html" class="text-blue-500 hover:text-blue-700"
-    >Comparison Tool</a>
+  <nav class="mb-8 mx-auto text-center bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden md:max-w-2xl p-4 transition-colors duration-200">
+    <a href="/" class="text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 mr-4">Summarizer</a>
+    <a href="/compare.html" class="text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300">Comparison Tool</a>
   </nav>
-  <body class="bg-gray-100 p-8">
+  <body class="bg-gray-100 dark:bg-gray-900 p-8 transition-colors duration-200">
     <div 
       id="auth-banner" 
-      class="bg-blue-100 p-4 text-center"
+      class="bg-blue-100 dark:bg-blue-900 p-4 text-center text-blue-800 dark:text-blue-200 mb-4 rounded-lg transition-colors duration-200"
       hx-get="/protected-route"
       hx-trigger="load"
       hx-swap="outerHTML"
     >
       Loading authentication status...
     </div>
-    <div
-      class="max-w-4xl mx-auto bg-white rounded-xl shadow-md overflow-hidden p-6"
-    >
-      <h1 class="text-2xl mb-4">Privacy Policy Comparison Tool</h1>
-      <p class="mb-4">
+    <div class="max-w-md mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden md:max-w-2xl p-6 transition-colors duration-200">
+      <h1 class="text-2xl mb-4 text-gray-900 dark:text-white">Privacy Policy Comparison Tool</h1>
+      <p class="mb-4 text-gray-700 dark:text-gray-300">
         Compare two privacy policies side by side with generative AI. Please
         provide your age, level of education, & a subjective rating of your
         understanding of privacy concepts to achieve the most accurate results.
@@ -50,7 +57,7 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
-            <label for="age" class="block text-sm font-medium text-gray-700"
+            <label for="age" class="block text-sm font-medium text-gray-700 dark:text-gray-400"
             >Age</label>
             <input
               type="number"
@@ -58,52 +65,54 @@
               name="age"
               min="0"
               required
-              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+              class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 transition-colors duration-200"
             />
           </div>
           <div>
             <label
               for="education"
-              class="block text-sm font-medium text-gray-700"
+              class="block text-sm font-medium text-gray-700 dark:text-gray-400"
             >Level of Education</label>
             <input
               type="text"
               id="education"
               name="education"
               required
-              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+              class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 transition-colors duration-200"
             />
           </div>
           <div>
             <label
               for="understanding"
-              class="block text-sm font-medium text-gray-700"
+              class="block text-sm font-medium text-gray-700 dark:text-gray-400"
             >Privacy Understanding (1-10)</label>
             <input
-              type="text"
+              type="number"
               id="understanding"
               name="understanding"
+              min="1"
+              max="10"
               required
-              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+              class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 transition-colors duration-200"
             />
           </div>
         </div>
         <div class="mb-4">
           <label
             for="modelSpeed"
-            class="block text-sm font-medium text-gray-700"
+            class="block text-sm font-medium text-gray-700 dark:text-gray-400"
           >Processing Speed</label>
           <select
             id="modelSpeed"
             name="modelSpeed"
             required
-            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+            class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 transition-colors duration-200"
           >
             <option value="fast" selected>Fast (Most Responsive)</option>
             <option value="medium">Medium (Balanced)</option>
             <option value="slow">Slow (Most Accurate)</option>
           </select>
-          <p class="mt-1 text-sm text-gray-500">
+          <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
             Select processing speed based on your needs. Faster processing may
             result in less detailed analysis.
           </p>
@@ -112,41 +121,43 @@
           <div>
             <label
               for="policyContent1"
-              class="block text-sm font-medium text-gray-700"
+              class="block text-sm font-medium text-gray-700 dark:text-gray-400"
             >First Privacy Policy</label>
             <textarea
               id="policyContent1"
               name="policyContent1"
               rows="6"
               required
-              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+              class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 transition-colors duration-200"
             ></textarea>
           </div>
           <div>
             <label
               for="policyContent2"
-              class="block text-sm font-medium text-gray-700"
+              class="block text-sm font-medium text-gray-700 dark:text-gray-400"
             >Second Privacy Policy</label>
             <textarea
               id="policyContent2"
               name="policyContent2"
               rows="6"
               required
-              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+              class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 transition-colors duration-200"
             ></textarea>
           </div>
         </div>
         <button
           type="submit"
-          class="w-full bg-blue-500 hover:bg-blue-400 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          class="w-full text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline transition-colors duration-200"
+          style="background-color: oklch(61% 0.231 251.65);"
         >
           Compare Policies
         </button>
       </form>
-      <div id="loading" class="htmx-indicator mt-4">
-        Comparing policies...
+      <div id="loading" class="htmx-indicator mt-4 flex items-center justify-center">
+        <div class="loading-spinner"></div>
+        <span class="ml-3 text-gray-700 dark:text-gray-300">Processing...</span>
       </div>
-      <pre id="comparison" class="mt-4 text-sm"></pre>
+      <pre id="comparison" class="mt-4 text-sm text-gray-800 dark:text-gray-200 whitespace-pre-wrap"></pre>
     </div>
 
     <script>

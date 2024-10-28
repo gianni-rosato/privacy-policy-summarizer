@@ -3,30 +3,35 @@
   font-style: normal;
   font-weight: 400;
   src: url("/static/fonts/Onest.woff2") format("woff2");
+  font-display: swap;
 }
 @font-face {
   font-family: "Onest Bold";
   font-style: normal;
   font-weight: 400;
   src: url("/static/fonts/Onest-Bold.woff2") format("woff2");
+  font-display: swap;
 }
 @font-face {
   font-family: "Hubot Sans";
   font-style: normal;
   font-weight: 600;
   src: url("/static/fonts/HubotSans-Bold.woff2") format("woff2");
+  font-display: swap;
 }
 @font-face {
   font-family: "Monaspace Neon";
   font-style: normal;
   font-weight: 400;
   src: url("/static/fonts/MonaspaceNeon.woff2") format("woff2");
+  font-display: swap;
 }
 @font-face {
   font-family: "Monaspace Neon Bold";
   font-style: normal;
   font-weight: 400;
   src: url("/static/fonts/MonaspaceNeon-Bold.woff2") format("woff2");
+  font-display: swap;
 }
 body {
   font-family: "Onest", sans-serif;
@@ -34,6 +39,7 @@ body {
 h1, h2, h3, h4, h5, h6, strong {
   font-family: "Onest Bold", sans-serif;
 }
+/* Summary styles */
 #summary {
   font-family: "Monaspace Neon", monospace;
   white-space: pre-wrap;
@@ -42,6 +48,7 @@ h1, h2, h3, h4, h5, h6, strong {
   white-space: -o-pre-wrap;
   word-wrap: break-word;
   overflow-wrap: break-word;
+  color: #1a1a1a;
 }
 #summary ul {
   list-style-type: disc;
@@ -63,34 +70,35 @@ h1, h2, h3, h4, h5, h6, strong {
   font-size: 1.7rem;
   line-height: 2.0rem;
   font-weight: 600;
-  color: oklch(44% 0.225 260);
+  color: oklch(61% 0.231 251.65);
 }
 #summary h2 {
   font-family: "Hubot Sans", sans-serif;
   font-size: 1.5rem;
   line-height: 1.7rem;
   font-weight: 600;
-  color: oklch(44% 0.225 260);
+  color: oklch(61% 0.231 251.65);
 }
 #summary h3 {
   font-family: "Hubot Sans", sans-serif;
   font-size: 1.2rem;
   line-height: 1.5rem;
   font-weight: 600;
-  color: oklch(44% 0.225 260);
+  color: oklch(61% 0.231 251.65);
 }
-#summary h4, h5, h6 {
+#summary h4, #summary h5, #summary h6 {
   font-family: "Hubot Sans", sans-serif;
   font-size: 1rem;
   line-height: 1.2rem;
   font-weight: 600;
-  color: oklch(44% 0.225 260);
+  color: oklch(61% 0.231 251.65);
 }
 #summary strong {
   font-family: "Monaspace Neon Bold", monospace;
   font-weight: 400;
-  color: black;
+  color: oklch(65.4% 0.231 40);
 }
+/* Comparison styles */
 #comparison {
   font-family: "Monaspace Neon", monospace;
   white-space: pre-wrap;
@@ -99,6 +107,7 @@ h1, h2, h3, h4, h5, h6, strong {
   white-space: -o-pre-wrap;
   word-wrap: break-word;
   overflow-wrap: break-word;
+  color: #1a1a1a;
 }
 #comparison ul {
   list-style-type: disc;
@@ -120,31 +129,81 @@ h1, h2, h3, h4, h5, h6, strong {
   font-size: 1.7rem;
   line-height: 2.0rem;
   font-weight: 600;
-  color: oklch(44% 0.225 260);
+  color: oklch(61% 0.231 251.65);
 }
 #comparison h2 {
   font-family: "Hubot Sans", sans-serif;
   font-size: 1.5rem;
   line-height: 1.7rem;
   font-weight: 600;
-  color: oklch(44% 0.225 260);
+  color: oklch(61% 0.231 251.65);
 }
 #comparison h3 {
   font-family: "Hubot Sans", sans-serif;
   font-size: 1.2rem;
   line-height: 1.5rem;
   font-weight: 600;
-  color: oklch(44% 0.225 260);
+  color: oklch(61% 0.231 251.65);
 }
-#comparison h4, h5, h6 {
+#comparison h4, #comparison h5, #comparison h6 {
   font-family: "Hubot Sans", sans-serif;
   font-size: 1rem;
   line-height: 1.2rem;
   font-weight: 600;
-  color: oklch(44% 0.225 260);
+  color: oklch(61% 0.231 251.65);
 }
 #comparison strong {
   font-family: "Monaspace Neon Bold", monospace;
   font-weight: 400;
   color: black;
+}
+/* Loading spinner animation */
+@keyframes spinner {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.loading-spinner {
+  width: 24px;
+  height: 24px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #3498db;
+  border-radius: 50%;
+  animation: spinner 1s linear infinite;
+}
+
+@media (prefers-color-scheme: dark) {
+    #summary,
+    #comparison {
+      color: white;
+    }
+    #summary h1,
+    #summary h2,
+    #summary h3,
+    #summary h4,
+    #summary h5,
+    #summary h6,
+    #comparison h1,
+    #comparison h2,
+    #comparison h3,
+    #comparison h4,
+    #comparison h5,
+    #comparison h6 {
+      color: oklch(78.1% 0.167 222);
+    }
+    #summary strong,
+    #comparison strong {
+      color: oklch(78.1% 0.167 40);
+    }
+    .loading-spinner {
+      border-color: oklch(37.29% 0.0306 259.73);
+      border-top-color: oklch(61% 0.231 251.65);
+    }
+}
+
+/* Smooth transitions for dark mode */
+#summary,
+#comparison,
+#summary *,
+#comparison * {
+  transition: color 0.2s ease-in-out;
 }

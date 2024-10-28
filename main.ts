@@ -56,24 +56,24 @@ app.get("/protected-route", async (c) => {
   const sessionId = await getSessionId(c.req.raw);
   if (!sessionId) {
     return c.html(`
-      <div class="mb-8 mx-auto text-center bg-yellow-100 rounded-xl shadow-md overflow-hidden md:max-w-2xl p-4">
-        <span class="text-yellow-800">⚠️ You need to sign in to use this tool.</span>
-        <div class="text-center bg-green-100 rounded-xl p-1">
-          <a 
+      <div class="mb-8 mx-auto text-center bg-yellow-100 dark:bg-yellow-800 rounded-xl shadow-md overflow-hidden md:max-w-2xl p-4">
+        <span class="text-yellow-800 dark:text-yellow-200">⚠️ You need to sign in to use this tool.</span>
+        <div class="text-center bg-green-100 dark:bg-green-800 rounded-xl p-1">
+          <a
             href="/oauth/signin"
-            class="ml-4 text-green-600 hover:text-green-800 underline"
+            class="ml-4 text-green-600 hover:text-green-800 dark:text-green-200 dark:hover:text-green-100 underline"
           >Sign in with GitHub</a>
         </div>
       </div>
     `);
   }
   return c.html(`
-    <div class="mb-8 mx-auto text-center bg-green-100 rounded-xl shadow-md overflow-hidden md:max-w-2xl p-4">
-      <span class="text-green-800">✓ Signed in with GitHub</span>
-      <div class="text-center bg-red-100 rounded-xl p-1">
-        <a 
+    <div class="mb-8 mx-auto text-center bg-green-100 dark:bg-green-800 rounded-xl shadow-md overflow-hidden md:max-w-2xl p-4">
+      <span class="text-green-800 dark:text-green-200">✓ Signed in with GitHub</span>
+      <div class="text-center bg-red-100 dark:bg-red-800 rounded-xl p-1">
+        <a
           href="/oauth/signout"
-          class="ml-4 text-red-600 hover:text-red-800 underline"
+          class="ml-4 text-red-600 hover:text-red-800 dark:text-red-200 dark:hover:text-red-100 underline"
         >Sign Out</a>
       </div>
     </div>
