@@ -3,7 +3,6 @@ import { type Context, Hono } from "jsr:@hono/hono";
 import { serveStatic } from "jsr:@hono/hono/deno";
 // import { stream, streamText, streamSSE } from 'jsr:@hono/hono/streaming'
 import { Renderer } from "jsr:@libs/markdown";
-import { createGitHubOAuthConfig, createHelpers } from "jsr:@deno/kv-oauth";
 import {
   getComparisonPrompt,
   getCompletion,
@@ -17,6 +16,7 @@ import {
   signOut,
   type Variables,
 } from "./services/auth.ts";
+import type { HTTPResponseError } from "@hono/hono/types";
 
 const app = new Hono<{
   Bindings: Bindings;
@@ -24,7 +24,7 @@ const app = new Hono<{
 }>();
 
 // Authentication middleware
-app.use("/api/*", async (c, next) => {
+app.use("/api/*", async (c: Context, next) => {
   const sessionId = await getSessionId(c.req.raw);
   if (!sessionId) {
     return new Response("Unauthorized", { status: 401 });
@@ -35,11 +35,11 @@ app.use("/api/*", async (c, next) => {
 });
 
 // OAuth routes
-app.get("/oauth/signin", async (c) => {
+app.get("/oauth/signin", async (c: Context) => {
   return await signIn(c.req.raw);
 });
 
-app.get("/oauth/callback", async (c) => {
+app.get("/oauth/callback", async (c: Context) => {
   const { response, sessionId } = await handleCallback(c.req.raw);
   if (sessionId) {
     c.set("sessionId", sessionId);
@@ -47,12 +47,12 @@ app.get("/oauth/callback", async (c) => {
   return response;
 });
 
-app.get("/oauth/signout", async (c) => {
+app.get("/oauth/signout", async (c: Context) => {
   return await signOut(c.req.raw);
 });
 
 // Protected route checker
-app.get("/protected-route", async (c) => {
+app.get("/protected-route", async (c: Context) => {
   const sessionId = await getSessionId(c.req.raw);
   if (!sessionId) {
     return c.html(`
@@ -89,7 +89,7 @@ app.use(
 app.use("/static/*", serveStatic({ root: "./views" }));
 
 // Summarize privacy policy & handle user input
-app.post("/api/summarize", async (c) => {
+app.post("/api/summarize", async (c: Context) => {
   const body = await c.req.parseBody();
   if (body) {
     const age: number = Number(body.age);
@@ -114,7 +114,7 @@ app.post("/api/summarize", async (c) => {
 });
 
 // Compare privacy policies
-app.post("/api/compare", async (c) => {
+app.post("/api/compare", async (c: Context) => {
   const body = await c.req.parseBody();
   if (body) {
     const age: number = Number(body.age);
@@ -142,13 +142,13 @@ app.post("/api/compare", async (c) => {
 });
 
 // Error handling
-app.onError((err, c) => {
+app.onError((err: Error | HTTPResponseError, c: Context) => {
   console.error(`${err}`);
   return c.text("An error occurred", 500);
 });
 
 // 404 handling
-app.notFound((c) => {
+app.notFound((c: Context) => {
   return c.text("Not found", 404);
 });
 
