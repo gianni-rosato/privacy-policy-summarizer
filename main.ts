@@ -11,11 +11,11 @@ import {
 } from "./services/llm.ts";
 import {
   type Bindings,
-  type Variables,
-  signIn,
-  handleCallback,
   getSessionId,
+  handleCallback,
+  signIn,
   signOut,
+  type Variables,
 } from "./services/auth.ts";
 
 const app = new Hono<{
@@ -24,13 +24,13 @@ const app = new Hono<{
 }>();
 
 // Authentication middleware
-app.use('/api/*', async (c, next) => {
+app.use("/api/*", async (c, next) => {
   const sessionId = await getSessionId(c.req.raw);
   if (!sessionId) {
     return new Response("Unauthorized", { status: 401 });
   }
   // Store sessionId in variables for use in handlers
-  c.set('sessionId', sessionId);
+  c.set("sessionId", sessionId);
   await next();
 });
 
@@ -42,7 +42,7 @@ app.get("/oauth/signin", async (c) => {
 app.get("/oauth/callback", async (c) => {
   const { response, sessionId } = await handleCallback(c.req.raw);
   if (sessionId) {
-    c.set('sessionId', sessionId);
+    c.set("sessionId", sessionId);
   }
   return response;
 });
@@ -144,12 +144,12 @@ app.post("/api/compare", async (c) => {
 // Error handling
 app.onError((err, c) => {
   console.error(`${err}`);
-  return c.text('An error occurred', 500);
+  return c.text("An error occurred", 500);
 });
 
 // 404 handling
 app.notFound((c) => {
-  return c.text('Not found', 404);
+  return c.text("Not found", 404);
 });
 
 console.log("Server running on http://localhost:8000");

@@ -9,12 +9,7 @@ const {
   signOut,
 } = createHelpers(oauthConfig);
 
-export {
-  signIn,
-  handleCallback,
-  getSessionId,
-  signOut,
-};
+export { getSessionId, handleCallback, signIn, signOut };
 
 // Types for Hono app
 export type Bindings = {

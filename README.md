@@ -48,7 +48,8 @@ This application uses GitHub OAuth for authentication. To set it up:
    GITHUB_CLIENT_SECRET=your_client_secret_here
    ```
 
-For production deployment, set these environment variables in your hosting platform instead of using a `.env` file.
+For production deployment, set these environment variables in your hosting
+platform instead of using a `.env` file.
 
 ## Useful Resources
 

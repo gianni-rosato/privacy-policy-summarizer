@@ -159,8 +159,12 @@ h1, h2, h3, h4, h5, h6, strong {
 }
 /* Loading spinner animation */
 @keyframes spinner {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 .loading-spinner {
   width: 24px;
@@ -172,32 +176,32 @@ h1, h2, h3, h4, h5, h6, strong {
 }
 
 @media (prefers-color-scheme: dark) {
-    #summary,
-    #comparison {
-      color: white;
-    }
-    #summary h1,
-    #summary h2,
-    #summary h3,
-    #summary h4,
-    #summary h5,
-    #summary h6,
-    #comparison h1,
-    #comparison h2,
-    #comparison h3,
-    #comparison h4,
-    #comparison h5,
-    #comparison h6 {
-      color: oklch(78.1% 0.167 222);
-    }
-    #summary strong,
-    #comparison strong {
-      color: oklch(78.1% 0.167 40);
-    }
-    .loading-spinner {
-      border-color: oklch(37.29% 0.0306 259.73);
-      border-top-color: oklch(61% 0.231 251.65);
-    }
+  #summary,
+  #comparison {
+    color: white;
+  }
+  #summary h1,
+  #summary h2,
+  #summary h3,
+  #summary h4,
+  #summary h5,
+  #summary h6,
+  #comparison h1,
+  #comparison h2,
+  #comparison h3,
+  #comparison h4,
+  #comparison h5,
+  #comparison h6 {
+    color: oklch(78.1% 0.167 222);
+  }
+  #summary strong,
+  #comparison strong {
+    color: oklch(78.1% 0.167 40);
+  }
+  .loading-spinner {
+    border-color: oklch(37.29% 0.0306 259.73);
+    border-top-color: oklch(61% 0.231 251.65);
+  }
 }
 
 /* Smooth transitions for dark mode */

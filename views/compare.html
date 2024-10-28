@@ -13,24 +13,32 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
-        darkMode: 'media',
+        darkMode: "media",
         theme: {
           extend: {
             animation: {
-              'spin-slow': 'spin 3s linear infinite',
-            }
-          }
-        }
-      }
+              "spin-slow": "spin 3s linear infinite",
+            },
+          },
+        },
+      };
     </script>
   </head>
-  <nav class="mb-8 mx-auto text-center bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden md:max-w-2xl p-4 transition-colors duration-200">
-    <a href="/" class="text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 mr-4">Summarizer</a>
-    <a href="/compare.html" class="text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300">Comparison Tool</a>
+  <nav
+    class="mb-8 mx-auto text-center bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden md:max-w-2xl p-4 transition-colors duration-200"
+  >
+    <a
+      href="/"
+      class="text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 mr-4"
+    >Summarizer</a>
+    <a
+      href="/compare.html"
+      class="text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+    >Comparison Tool</a>
   </nav>
   <body class="bg-gray-100 dark:bg-gray-900 p-8 transition-colors duration-200">
-    <div 
-      id="auth-banner" 
+    <div
+      id="auth-banner"
       class="bg-blue-100 dark:bg-blue-900 p-4 text-center text-blue-800 dark:text-blue-200 mb-4 rounded-lg transition-colors duration-200"
       hx-get="/protected-route"
       hx-trigger="load"
@@ -38,8 +46,12 @@
     >
       Loading authentication status...
     </div>
-    <div class="max-w-md mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden md:max-w-2xl p-6 transition-colors duration-200">
-      <h1 class="text-2xl mb-4 text-gray-900 dark:text-white">Privacy Policy Comparison Tool</h1>
+    <div
+      class="max-w-md mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden md:max-w-2xl p-6 transition-colors duration-200"
+    >
+      <h1 class="text-2xl mb-4 text-gray-900 dark:text-white">
+        Privacy Policy Comparison Tool
+      </h1>
       <p class="mb-4 text-gray-700 dark:text-gray-300">
         Compare two privacy policies side by side with generative AI. Please
         provide your age, level of education, & a subjective rating of your
@@ -57,7 +69,9 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
-            <label for="age" class="block text-sm font-medium text-gray-700 dark:text-gray-400"
+            <label
+              for="age"
+              class="block text-sm font-medium text-gray-700 dark:text-gray-400"
             >Age</label>
             <input
               type="number"
@@ -148,16 +162,22 @@
         <button
           type="submit"
           class="w-full text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline transition-colors duration-200"
-          style="background-color: oklch(61% 0.231 251.65);"
+          style="background-color: oklch(61% 0.231 251.65)"
         >
           Compare Policies
         </button>
       </form>
-      <div id="loading" class="htmx-indicator mt-4 flex items-center justify-center">
+      <div
+        id="loading"
+        class="htmx-indicator mt-4 flex items-center justify-center"
+      >
         <div class="loading-spinner"></div>
         <span class="ml-3 text-gray-700 dark:text-gray-300">Processing...</span>
       </div>
-      <pre id="comparison" class="mt-4 text-sm text-gray-800 dark:text-gray-200 whitespace-pre-wrap"></pre>
+      <pre
+        id="comparison"
+        class="mt-4 text-sm text-gray-800 dark:text-gray-200 whitespace-pre-wrap"
+      ></pre>
     </div>
 
     <script>
@@ -186,10 +206,11 @@
       });
     </script>
     <script>
-      document.addEventListener('htmx:afterRequest', function(evt) {
+      document.addEventListener("htmx:afterRequest", function (evt) {
         // Handle unauthorized responses for any request
         if (evt.detail.xhr.status === 401) {
-          window.location.href = '/oauth/signin?success_url=' + encodeURIComponent(window.location.pathname);
+          window.location.href = "/oauth/signin?success_url=" +
+            encodeURIComponent(window.location.pathname);
         }
       });
     </script>
