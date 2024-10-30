@@ -13,8 +13,8 @@ export { getSessionId, handleCallback, signIn, signOut };
 
 // Types for Hono app
 export type Bindings = {
-  GITHUB_CLIENT_ID: string;
-  GITHUB_CLIENT_SECRET: string;
+  CLIENT_ID: string;
+  CLIENT_SECRET: string;
 };
 
 export type Variables = {

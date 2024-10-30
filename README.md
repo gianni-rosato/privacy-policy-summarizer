@@ -44,8 +44,8 @@ This application uses GitHub OAuth for authentication. To set it up:
 7. Generate and copy a new Client Secret
 8. Create a `.env` file in the project root:
    ```ini
-   GITHUB_CLIENT_ID=your_client_id_here
-   GITHUB_CLIENT_SECRET=your_client_secret_here
+   CLIENT_ID=your_client_id_here
+   CLIENT_SECRET=your_client_secret_here
    ```
 
 For production deployment, set these environment variables in your hosting
