@@ -24,7 +24,32 @@ export async function getCompletion(
 ): Promise<string> {
   const modelString: string = getModelString(modelSpeed);
   console.log("Selected model:", modelString);
+
   const apiKey: string = Deno.env.get("API_KEY") || "";
+
+  try {
+    const response: Response = await fetch(
+      "https://openrouter.ai/api/v1/auth/key",
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${apiKey}`,
+        },
+      },
+    );
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    console.log("Key Information:");
+    const data: OpenRouterResponse = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error("Error getting key information:", error);
+    throw error;
+  }
+
   try {
     const response = await fetch(
       "https://openrouter.ai/api/v1/chat/completions",

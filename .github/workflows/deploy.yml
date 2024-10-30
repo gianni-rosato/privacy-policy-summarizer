@@ -18,24 +18,33 @@ jobs:
       - name: Clone repository
         uses: actions/checkout@v4
 
+      - name: Cache Deno dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.deno
+            ~/.cache/deno
+          key: ${{ runner.os }}-deno-${{ hashFiles('**/deps.ts') }}
+
       - name: Install Deno
         uses: denoland/setup-deno@v2
         with:
           deno-version: v2.x
 
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: lts/*
+      - name: Cache Dependencies
+        run: deno cache main.ts
 
-      - name: Install step
-        run: "deno install"
+      - name: Test
+        run: deno test
 
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
+        env:
+          CLIENT_ID: ${{ secrets.CLIENT_ID }}
+          CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+          API_KEY: ${{ secrets.API_KEY }}
         with:
           project: "priv-pol-web"
           entrypoint: "main.ts"
           root: "."
-          
           exclude: example-policies/

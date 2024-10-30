@@ -1,5 +1,15 @@
 import { createGitHubOAuthConfig, createHelpers } from "jsr:@deno/kv-oauth";
 
+const clientId: string = Deno.env.get("CLIENT_ID") || "";
+const clientSecret: string = Deno.env.get("CLIENT_SECRET") || "";
+
+if (Deno.env.get("CLIENT_ID")) {
+  Deno.env.set("GITHUB_CLIENT_ID", clientId!);
+}
+if (Deno.env.get("CLIENT_SECRET")) {
+  Deno.env.set("GITHUB_CLIENT_SECRET", clientSecret!);
+}
+
 // Initialize OAuth config and helpers
 const oauthConfig = createGitHubOAuthConfig();
 const {
