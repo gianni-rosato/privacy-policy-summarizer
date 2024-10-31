@@ -37,8 +37,8 @@ jobs:
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
         env:
-          CLIENT_ID: ${{ secrets.CLIENT_ID }}
-          CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+          GITHUB_CLIENT_ID: ${{ secrets.CLIENT_ID }}
+          GITHUB_CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
           API_KEY: ${{ secrets.API_KEY }}
         with:
           project: "priv-pol-web"
