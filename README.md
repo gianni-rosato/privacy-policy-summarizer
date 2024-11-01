@@ -56,3 +56,7 @@ platform instead of using a `.env` file.
 - Hono web framework documentation: https://hono.dev/docs/
 - JSR for packages: https://jsr.io/
 - Deno documentation: https://docs.deno.com/
+
+## Privacy
+
+By continuing, Google will share your name, email address, language preference, and profile picture with Privacy Policy Summarizer. See Privacy Policy Summarizer’s Privacy Policy and Terms of Service.

@@ -62,14 +62,14 @@ app.get("/protected-route", async (c: Context) => {
           <a
             href="/oauth/signin"
             class="ml-4 text-green-600 hover:text-green-800 dark:text-green-200 dark:hover:text-green-100 underline"
-          >Sign in with GitHub</a>
+          >Sign in with Google</a>
         </div>
       </div>
     `);
   }
   return c.html(`
     <div class="mb-8 mx-auto text-center bg-green-100 dark:bg-green-800 rounded-xl shadow-md overflow-hidden md:max-w-2xl p-4">
-      <span class="text-green-800 dark:text-green-200">✓ Signed in with GitHub</span>
+      <span class="text-green-800 dark:text-green-200">✓ Signed in with Google</span>
       <div class="text-center bg-red-100 dark:bg-red-800 rounded-xl p-1">
         <a
           href="/oauth/signout"

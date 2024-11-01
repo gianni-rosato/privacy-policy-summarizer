@@ -1,17 +1,13 @@
-import { createGitHubOAuthConfig, createHelpers } from "jsr:@deno/kv-oauth";
+import { createGoogleOAuthConfig, createHelpers } from "jsr:@deno/kv-oauth";
 
-const clientId: string = Deno.env.get("CLIENT_ID") || "";
-const clientSecret: string = Deno.env.get("CLIENT_SECRET") || "";
-
-if (Deno.env.get("CLIENT_ID")) {
-  Deno.env.set("GITHUB_CLIENT_ID", clientId!);
-}
-if (Deno.env.get("CLIENT_SECRET")) {
-  Deno.env.set("GITHUB_CLIENT_SECRET", clientSecret!);
-}
+const redirectUri: string = Deno.env.get("REDIRECT_URI") || "http://localhost:8000/oauth/callback";
+const scope: string = Deno.env.get("GOOGLE_SCOPE") || "";
 
 // Initialize OAuth config and helpers
-const oauthConfig = createGitHubOAuthConfig();
+const oauthConfig = createGoogleOAuthConfig({
+  redirectUri: redirectUri,
+  scope: scope,
+});
 const {
   signIn,
   handleCallback,
@@ -23,8 +19,8 @@ export { getSessionId, handleCallback, signIn, signOut };
 
 // Types for Hono app
 export type Bindings = {
-  CLIENT_ID: string;
-  CLIENT_SECRET: string;
+  GOOGLE_CLIENT_ID: string;
+  GOOGLE_CLIENT_SECRET: string;
 };
 
 export type Variables = {
