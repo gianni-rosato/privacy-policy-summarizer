@@ -36,14 +36,14 @@ jobs:
 
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
-        env:
-          REDIRECT_URI: ${{ secrets.REDIRECT_URI }}
-          GOOGLE_SCOPE: ${{ secrets.GOOGLE_SCOPE }}
-          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
-          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
-          API_KEY: ${{ secrets.API_KEY }}
         with:
           project: "priv-pol-web"
           entrypoint: "main.ts"
           root: "."
           exclude: example-policies/
+          env-vars: |
+            REDIRECT_URI=${{ secrets.REDIRECT_URI }}
+            GOOGLE_SCOPE=${{ secrets.GOOGLE_SCOPE }}
+            GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }}
+            GOOGLE_CLIENT_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }}
+            API_KEY=${{ secrets.API_KEY }}
