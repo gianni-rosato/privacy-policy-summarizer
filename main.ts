@@ -86,6 +86,14 @@ app.use(
   "/compare.html",
   serveStatic({ root: "./views", path: "compare.html" }),
 );
+app.use(
+  "/policy.html",
+  serveStatic({ root: "./views", path: "policy.html" }),
+);
+app.use(
+  "/terms.html",
+  serveStatic({ root: "./views", path: "terms.html" }),
+);
 app.use("/static/*", serveStatic({ root: "./views" }));
 
 // Summarize privacy policy & handle user input

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy Policy - Privacy Policy Summarizer</title>
+    <link href="/static/css/main.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "media",
+        theme: {
+          extend: {
+            animation: {
+              "spin-slow": "spin 3s linear infinite",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-gray-100 dark:bg-gray-900 p-8 transition-colors duration-200">
+    <nav
+      class="mb-8 mx-auto text-center bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden md:max-w-2xl p-4 transition-colors duration-200"
+    >
+      <a
+        href="/"
+        class="text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 mr-4"
+      >Summarizer</a>
+      <a
+        href="/compare.html"
+        class="text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 mr-4"
+      >Comparison Tool</a>
+    </nav>
+
+    <div
+      class="max-w-4xl mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden p-8 transition-colors duration-200"
+    >
+      <h1 class="text-3xl mb-6 text-gray-900 dark:text-white">
+        Privacy Policy for Privacy Policy Summarizer
+      </h1>
+
+      <div class="prose dark:prose-invert max-w-none">
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-8">
+          Last Updated: <span id="currentDate"></span>
+        </p>
+
+        <section class="mb-8">
+          <h2
+            class="text-2xl mb-4 text-gray-800 dark:text-gray-200"
+          >
+            Introduction
+          </h2>
+          <p class="text-gray-700 dark:text-gray-300">
+            This Privacy Policy explains how the Privacy Policy Summarizer
+            ("we", "our", or "the Service") handles information when you use our
+            web-based tool. We are committed to minimizing data collection while
+            providing an effective privacy policy analysis service.
+          </p>
+        </section>
+        
+        <section class="mb-8">
+          <h2
+            class="text-2xl mb-4 text-gray-800 dark:text-gray-200"
+          >
+            Summary
+          </h2>
+          <p class="text-gray-700 dark:text-gray-300">
+            Privacy Policy Summarizer collects temporary session data for authentication and form input data for analysis, which is not stored after processing. The AI API processes submitted privacy policy content in real-time based on the selected processing speed.
+          </p>
+        </section>
+
+        <section class="mb-8">
+          <h2
+            class="text-2xl mb-4 text-gray-800 dark:text-gray-200"
+          >
+            Information Collection and Usage
+          </h2>
+
+          <h3
+            class="text-xl mb-3 text-gray-800 dark:text-gray-200"
+          >
+            Temporary Session Data
+          </h3>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">
+            We use Deno KV OAuth to manage authentication sessions. This only
+            stores:
+          </p>
+          <ul class="list-disc ml-6 mb-4 text-gray-700 dark:text-gray-300">
+            <li>A temporary session ID for Google authentication</li>
+            <li>
+              No personal Google account information is permanently stored
+            </li>
+          </ul>
+
+          <h3
+            class="text-xl mb-3 text-gray-800 dark:text-gray-200"
+          >
+            Form Input Data
+          </h3>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">
+            When you submit privacy policies for analysis, we temporarily receive your inputs for:
+          </p>
+          <ul class="list-disc ml-6 mb-4 text-gray-700 dark:text-gray-300">
+            <li>Age</li>
+            <li>Education level</li>
+            <li>Privacy understanding rating (1-10)</li>
+            <li>Privacy policy text content</li>
+            <li>Selected processing speed preference</li>
+          </ul>
+
+          <p class="text-gray-700 dark:text-gray-300 mb-4">
+            This information is:
+          </p>
+          <ul class="list-disc ml-6 mb-4 text-gray-700 dark:text-gray-300">
+            <li>Used only for the immediate analysis request</li>
+            <li>Transmitted to OpenRouter AI API for processing</li>
+            <li>Not stored or retained after processing</li>
+            <li>
+              Used to contextualize the AI analysis based on the input demographics
+            </li>
+          </ul>
+
+          <h3
+            class="text-xl mb-3 text-gray-800 dark:text-gray-200"
+          >
+            Technical Processing
+          </h3>
+          <ul class="list-disc ml-6 mb-4 text-gray-700 dark:text-gray-300">
+            <li>
+              Your submitted privacy policy content is processed in real-time
+              through OpenRouter's AI API
+            </li>
+            <li>
+              The processing speed you select determines which AI model is used
+            </li>
+          </ul>
+        </section>
+
+        <section class="mb-8">
+          <h2
+            class="text-2xl mb-4 text-gray-800 dark:text-gray-200"
+          >
+            Third-Party Services
+          </h2>
+
+          <h3
+            class="text-xl mb-3 text-gray-800 dark:text-gray-200"
+          >
+            Google OAuth
+          </h3>
+          <ul class="list-disc ml-6 mb-4 text-gray-700 dark:text-gray-300">
+            <li>Used solely for authentication</li>
+            <li>Managed through Deno KV OAuth</li>
+            <li>Only session IDs are temporarily stored</li>
+            <li>No Google profile information is retained by our service</li>
+          </ul>
+
+          <h3
+            class="text-xl mb-3 text-gray-800 dark:text-gray-200"
+          >
+            OpenRouter AI API
+          </h3>
+          <ul class="list-disc ml-6 mb-4 text-gray-700 dark:text-gray-300">
+            <li>Processes privacy policy text for analysis</li>
+            <li>Receives user demographics to contextualize responses</li>
+            <li>No logs or copies of analyzed privacy policies are retained by us</li>
+            <li>Use of OpenRouter's AI API is governed by <a href="https://openrouter.ai/privacy">OpenRouter's Privacy Policy.</a></li>
+          </ul>
+        </section>
+
+        <section class="mb-8">
+          <h2
+            class="text-2xl mb-4 text-gray-800 dark:text-gray-200"
+          >
+            Data Storage
+          </h2>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">
+            We intentionally minimize data storage:
+          </p>
+          <ul class="list-disc ml-6 mb-4 text-gray-700 dark:text-gray-300">
+            <li>No database of user information</li>
+            <li>No storage of submitted privacy policies</li>
+            <li>No retention of analysis results</li>
+            <li>
+              Session IDs are temporary and cleared upon sign-out or expiration
+            </li>
+          </ul>
+        </section>
+
+        <section class="mb-8">
+          <h2
+            class="text-2xl mb-4 text-gray-800 dark:text-gray-200"
+          >
+            Security
+          </h2>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">
+            We protect your data during transmission by:
+          </p>
+          <ul class="list-disc ml-6 mb-4 text-gray-700 dark:text-gray-300">
+            <li>Using HTTPS for all communications</li>
+            <li>Securing API calls with appropriate authentication</li>
+            <li>Processing data in real-time without persistent storage</li>
+          </ul>
+        </section>
+
+        <section class="mb-8">
+          <h2
+            class="text-2xl mb-4 text-gray-800 dark:text-gray-200"
+          >
+            Your Rights
+          </h2>
+          <ul class="list-disc ml-6 mb-4 text-gray-700 dark:text-gray-300">
+            <li>You can sign out at any time, clearing your session</li>
+            <li>
+              You may use the service without concern for data retention, as we don't
+              store your information
+            </li>
+            <li>Please contact us with any privacy concerns</li>
+          </ul>
+        </section>
+
+        <section class="mb-8">
+          <h2
+            class="text-2xl mb-4 text-gray-800 dark:text-gray-200"
+          >
+            Children's Privacy
+          </h2>
+          <p class="text-gray-700 dark:text-gray-300">
+            While our form accepts age inputs below 18 for research purposes,
+            users must be 18 or older to use this service. By using our service, you confirm that you are 18 years of age or older.
+          </p>
+        </section>
+
+        <section class="mb-8">
+          <h2
+            class="text-2xl mb-4 text-gray-800 dark:text-gray-200"
+          >
+            Contact
+          </h2>
+          <p class="text-gray-700 dark:text-gray-300">
+            For questions about the contents of this Privacy Policy, our data handling, or the Web interface in general, please contact <a href="mailto:gsrosato@wpi.edu">gsrosato@wpi.edu</a>.
+          </p>
+        </section>
+
+        <section class="mb-8">
+          <h2
+            class="text-2xl mb-4 text-gray-800 dark:text-gray-200"
+          >
+            Open Source Transparency
+          </h2>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">
+            This service is <a href="https://github.com/gianni-rosato/privacy-policy-summarizer">on GitHub</a> under the MIT license and is open source. You can verify our privacy practices by
+            reviewing our code repository, which shows:
+          </p>
+          <ul class="list-disc ml-6 mb-4 text-gray-700 dark:text-gray-300">
+            <li>Temporary session handling</li>
+            <li>Real-time processing without retention</li>
+            <li>Clear data flow</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      // Set current date
+      document.getElementById("currentDate").textContent = new Date()
+        .toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        });
+    </script>
+  </body>
+</html>
