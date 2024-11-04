@@ -93,10 +93,14 @@ app.post("/api/summarize", async (c: Context) => {
   const body = await c.req.parseBody();
   if (body) {
     const age: number = Number(body.age);
-    const education: string = String(body.education);
+    const education: string = String(body.levelOfEducation);
     const understanding: number = Number(body.understanding);
     const policyContent: string = String(body.policyContent);
     const modelSpeed: string = String(body.modelSpeed);
+
+    console.log("Age:", age);
+    console.log("Education:", education);
+    console.log("Understanding:", understanding);
 
     const prompt: string = getSummaryPrompt(education, understanding, age);
 
@@ -118,11 +122,15 @@ app.post("/api/compare", async (c: Context) => {
   const body = await c.req.parseBody();
   if (body) {
     const age: number = Number(body.age);
-    const education: string = String(body.education);
+    const education: string = String(body.levelOfEducation);
     const understanding: number = Number(body.understanding);
     const policyContent1: string = String(body.policyContent1);
     const policyContent2: string = String(body.policyContent2);
     const modelSpeed: string = String(body.modelSpeed);
+
+    console.log("Age:", age);
+    console.log("Education:", education);
+    console.log("Understanding:", understanding);
 
     const prompt: string = getComparisonPrompt(education, understanding, age);
     const policyContent: string = "First privacy policy:\n\n" + policyContent1 +
