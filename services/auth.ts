@@ -1,6 +1,7 @@
 import { createGoogleOAuthConfig, createHelpers } from "jsr:@deno/kv-oauth";
 
-const redirectUri: string = Deno.env.get("REDIRECT_URI") || "http://localhost:8000/oauth/callback";
+const redirectUri: string = Deno.env.get("REDIRECT_URI") ||
+  "http://localhost:8000/oauth/callback";
 const scope: string = Deno.env.get("GOOGLE_SCOPE") || "";
 
 // Initialize OAuth config and helpers

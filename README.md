@@ -59,4 +59,6 @@ platform instead of using a `.env` file.
 
 ## Privacy
 
-By continuing, Google will share your name, email address, language preference, and profile picture with Privacy Policy Summarizer. See Privacy Policy Summarizer’s Privacy Policy and Terms of Service.
+By continuing, Google will share your name, email address, language preference,
+and profile picture with Privacy Policy Summarizer. See Privacy Policy
+Summarizer’s Privacy Policy and Terms of Service.
