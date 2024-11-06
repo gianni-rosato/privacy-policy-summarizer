@@ -33,6 +33,11 @@
   src: url("/static/fonts/MonaspaceNeon-Bold.woff2") format("woff2");
   font-display: swap;
 }
+picture {
+  margin: 1rem;
+  display: block;
+  text-align: center;
+}
 body {
   font-family: "Onest", sans-serif;
 }
