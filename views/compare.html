@@ -44,11 +44,15 @@
     <a
       href="/"
       class="text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 mr-4"
-    >Summarizer</a>
+    >Summarize</a>
     <a
       href="/compare.html"
-      class="text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
-    >Comparison Tool</a>
+      class="text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 mr-4"
+    >Compare</a>
+    <a
+      href="/help.html"
+      class="text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 mr-4"
+    >Help</a>
   </nav>
   <body class="bg-gray-100 dark:bg-gray-900 p-8 transition-colors duration-200">
     <div
@@ -138,7 +142,7 @@
             />
             <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
               Privacy Understanding is a subjective rating of your knowledge of
-              privacy concepts (PII, Data Controller/Processor, etc).
+              privacy concepts. <a href="/help.html">Help</a>
             </p>
           </div>
         </div>
@@ -198,6 +202,11 @@
           Compare Policies
         </button>
       </form>
+      <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
+        ⚠️ Please be aware that summarization employs the use of a generative AI
+        tool. Responses may not be entirely accurate to the source material due
+        to hallucinations.
+      </p>
       <div
         id="loading"
         class="htmx-indicator mt-4 flex items-center justify-center"

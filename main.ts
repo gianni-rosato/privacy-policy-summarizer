@@ -94,6 +94,10 @@ app.use(
   "/terms.html",
   serveStatic({ root: "./views", path: "terms.html" }),
 );
+app.use(
+  "/help.html",
+  serveStatic({ root: "./views", path: "help.html" }),
+);
 app.use("/static/*", serveStatic({ root: "./views" }));
 
 // Summarize privacy policy & handle user input

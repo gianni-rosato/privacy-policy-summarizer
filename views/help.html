@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy Policy - Privacy Policy Summarizer</title>
+    <link href="/static/css/main.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "media",
+        theme: {
+          extend: {
+            animation: {
+              "spin-slow": "spin 3s linear infinite",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <picture>
+    <source
+      srcset="/static/img/wpilogo.jxl"
+      type="image/jxl"
+    />
+    <img
+      src="/static/img/wpilogo.avif"
+      alt="WPI Logo"
+      width="64"
+      height="64"
+      loading="lazy"
+      class="items-center justify-center mx-auto mb-4"
+    />
+  </picture>
+  <nav
+    class="mb-8 mx-auto text-center bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden md:max-w-2xl p-4 transition-colors duration-200"
+  >
+    <a
+      href="/"
+      class="text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 mr-4"
+    >Summarize</a>
+    <a
+      href="/compare.html"
+      class="text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 mr-4"
+    >Compare</a>
+    <a
+      href="/help.html"
+      class="text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 mr-4"
+    >Help</a>
+  </nav>
+  <body class="bg-gray-100 dark:bg-gray-900 p-8 transition-colors duration-200">
+    <div
+      class="max-w-4xl mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden p-8 transition-colors duration-200"
+    >
+      <h1 class="text-3xl mb-6 text-gray-900 dark:text-white">
+        Help
+      </h1>
+
+      <div class="prose dark:prose-invert max-w-none">
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-8">
+          Last Updated: <span id="currentDate"></span>
+        </p>
+
+        <section class="mb-8">
+          <p class="text-gray-700 dark:text-gray-300">
+            Need some assistance using our Generative AI-powered privacy policy
+            accessibility tool? We've got you covered!
+          </p>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl mb-4 text-gray-800 dark:text-gray-200">
+            Privacy &amp; Terms of Use
+          </h2>
+
+          <p class="text-gray-700 dark:text-gray-300 mb-4">
+            If you wish to know more about the data we (don't) collect or what
+            appropriate usage looks like, please visit our <a href="policy.html"
+            >Privacy Policy</a> &amp; <a href="terms.html">Terms of Use</a>.
+            Usage of this tool is subject to our Terms of Use.
+          </p>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl mb-4 text-gray-800 dark:text-gray-200">
+            Summarization Tool Overview
+          </h2>
+
+          <p class="text-gray-700 dark:text-gray-300 mb-4">
+            The primary function of our <a href="/">Summarization Tool</a> is to
+            make lengthy, difficult-to-read privacy disclosures more accessible.
+            You can enter helpful information that you would like the Generative
+            AI system to consider, and the output will use the input information
+            to try and be more helpful. The tool asks for some inputs that are
+            outlined below.
+          </p>
+
+          <h3 class="text-xl mb-3 text-gray-800 dark:text-gray-200">
+            Age
+          </h3>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">
+            As outlined by our Terms of Use, you must be 18 years of age or
+            older to use this tool. However, you are free to enter any age you
+            wish - the age you pass to the tool will pass to the Generative AI
+            backend to help it form a more relevant summary for your input age.
+          </p>
+
+          <h3 class="text-xl mb-3 text-gray-800 dark:text-gray-200">
+            Level of Education
+          </h3>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">
+            This dropdown menu allows you to select a relevant Level of
+            Education. The options provided are "Graduate", "College", "High
+            School", "Middle School", "Elementary School", and "Undetermined".
+            For the most personally relevant output, we encourage selecting the
+            highest level of education completed, if possible; as with the Age
+            input, you are do not need to provide your actual level of
+            education.
+          </p>
+
+          <h3 class="text-xl mb-3 text-gray-800 dark:text-gray-200">
+            Privacy Understanding (1-10)
+          </h3>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">
+            The Privacy Understanding scale allows you to indicate your
+            familiarity with privacy policies and data protection concepts on a
+            scale of 1 to 10. A rating of 1 indicates very limited knowledge of
+            privacy concepts, while 10 indicates expert-level understanding.
+            This helps the AI tailor explanations to your comfort level - for
+            example, someone rating themselves as a 2 may receive explanations
+            that replace technical terms with conceptual explanations, while
+            someone rating themselves as a 9 might receive a response that makes
+            liberal use of technical terminology.
+          </p>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">
+            Some examples of terms you may see in a privacy policy that may be
+            unfamiliar include:
+          </p>
+          <ul class="list-disc ml-6 mb-4 text-gray-700 dark:text-gray-300">
+            <li>VPN</li>
+            <li>IP Address</li>
+            <li>PII</li>
+            <li>Data Controller</li>
+            <li>Cookies</li>
+            <li>Third Party</li>
+            <li>Analytics</li>
+            <li>GDPR</li>
+            <li>CCPA</li>
+            <li>Data Subject</li>
+            <li>Data Processing</li>
+            <li>Opt-Out</li>
+            <li>SSL/TLS</li>
+            <li>API</li>
+            <li>Data Breach</li>
+            <li>Data Retention</li>
+            <li>Encryption</li>
+            <li>Data Mining</li>
+          </ul>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">
+            There are additional terms not listed here, but you can use this
+            sample list of terms to understand what level of Privacy
+            Understanding may be most relevant to you.
+          </p>
+
+          <h3 class="text-xl mb-3 text-gray-800 dark:text-gray-200">
+            Processing Speed
+          </h3>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">
+            The Processing Speed option provides a dropdown that allows you to
+            select between "Fast", "Medium", and "Slow". Under the hood, this
+            option is allowing you to select a Generative AI model that best
+            suits your needs. The "Fast" model is selected by default and
+            responds very quickly - a response should be provided a couple of
+            seconds. The "Medium" model provides a larger, more capable
+            Generative AI system that should provide a more accurate response at
+            around one-fifth of the speed of the "Fast" model. The "Slow" model
+            provides maximum accuracy at around <one-fourteenth
+            >1/14</one-fourteenth> the speed of the "Fast" model.
+          </p>
+
+          <h3 class="text-xl mb-3 text-gray-800 dark:text-gray-200">
+            Privacy Policy Content
+          </h3>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">
+            This area is a big text box where you can paste in the text contents
+            of the privacy policy you wish to summarize.
+          </p>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl mb-4 text-gray-800 dark:text-gray-200">
+            Comparison Tool Overview
+          </h2>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">
+            The Comparison Tool is designed to allow you to compare the contents
+            of two privacy policies. There are a number of services available on
+            the Web that have varying degrees of privacy awareness - an example
+            is DuckDuckGo, which aims to be a privacy-conscious alternative to
+            Google Search with clear claims upfront about minimal user tracking.
+            Other services are less explicit about their privacy impact versus
+            that of their competitors; an example would be Uber versus Lyft, two
+            ride sharing services where neither service markets itself as being
+            more privacy conscious than the other. The Comparison Tool aims to
+            be helpful in either scenario.
+          </p>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">
+            The Comparison Tool is informed by an identical set of parameters
+            that you are able to supply via the Comparison Tool's page. The one
+            additional input compared to the Summary Tool is another text box
+            for a privacy policy input that allows you to provide two policies
+            for comparison instead of just one like the Summarization Tool.
+          </p>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      // Set current date
+      document.getElementById("currentDate").textContent = new Date()
+        .toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        });
+    </script>
+  </body>
+</html>
