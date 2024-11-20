@@ -159,6 +159,14 @@ export function getSummaryPrompt(
 
   ---
 
+  ## Third Party Sharing 🤝
+  - [If data is not shared with third parties, mention that]
+  - [Third party 1, if applicable]
+  - [Third party 2, if applicable]
+  - [Continue...]
+
+  ---
+
   ## How They Use Your Data ⚙️
   - [Usage 1]
   - [Usage 2]
@@ -166,10 +174,20 @@ export function getSummaryPrompt(
 
   ---
 
+  ## Security Measures 🔒
+  - [Explain how data is protected]
+
+  ---
+
   ## Your Rights ⚖️
   - [Right 1]
   - [Right 2]
   - [Continue...]
+
+  ---
+
+  ## Children's Privacy 🧒
+  - [Explain how children's data is handled and whether handling meets legal requirements]
 
   ---
 
