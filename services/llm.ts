@@ -110,8 +110,11 @@ export function getSummaryPrompt(
     - "# Privacy Policy Summary ✨" (2-3 sentences)
     - "## Key Points 📋" (bullet points of crucial information)
     - "## What They Collect 📲" (organized by main topics)
+    - "## Third Party Sharing 🤝" (if data is shared, list parties)
     - "## How They Use Your Data ⚙️" (clearly explained)
-    - "## Your Rights ⚖️" (user rights and controls)
+    - "## Security Measures 🔒" (how data is protected)
+    - "## Your Rights ⚖️" (user rights and controls from the CCPA - explain what the CCPA is, the rights it provides, and whether the policy grants them)
+    - "## Children's Privacy 🧒" (how children's data is handled)
     - "## Action Items 🛡️" (what the user should know or do)
 
   2. Follow these formatting rules:
@@ -180,9 +183,13 @@ export function getSummaryPrompt(
   ---
 
   ## Your Rights ⚖️
-  - [Right 1]
-  - [Right 2]
-  - [Continue...]
+  - [Explanation of what the CCPA is]
+  - [The right to know about the personal information a business collects about them and how it is used and shared - yes or no?]
+  - [The right to delete personal information collected from them - yes or no?]
+  - [The right to opt-out of the sale of their personal information - yes or no?]
+  - [The right of non-discrimination for exercising their CCPA rights - yes or no?]
+  - [The right to correct their personal information - yes or no?]
+  - [The right to limit the use and disclosure of their personal information - yes or no?]
 
   ---
 
