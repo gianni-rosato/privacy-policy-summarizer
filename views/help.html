@@ -19,71 +19,90 @@
       };
     </script>
   </head>
-  <picture>
-    <source
-      srcset="/static/img/wpilogo.jxl"
-      type="image/jxl"
-    />
-    <img
-      src="/static/img/wpilogo.avif"
-      alt="WPI Logo"
-      width="64"
-      height="64"
-      loading="lazy"
-      class="items-center justify-center mx-auto mb-4"
-    />
-  </picture>
-  <nav
-    class="mb-8 mx-auto text-center bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden md:max-w-2xl p-4 transition-colors duration-200"
-  >
-    <a
-      href="/"
-      class="text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 mr-4"
-    >Summarize</a>
-    <a
-      href="/compare.html"
-      class="text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 mr-4"
-    >Compare</a>
-    <a
-      href="/help.html"
-      class="text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 mr-4"
-    >Help</a>
-  </nav>
   <body class="bg-gray-100 dark:bg-gray-900 p-8 transition-colors duration-200">
+    <picture>
+      <source srcset="/static/img/wpilogo.jxl" type="image/jxl" />
+      <img
+        src="/static/img/wpilogo.avif"
+        alt="WPI Logo"
+        width="64"
+        height="64"
+        loading="lazy"
+        class="items-center justify-center mx-auto mb-4"
+        aria-label="Worcester Polytechnic Institute Logo"
+      />
+    </picture>
+
+    <nav
+      class="mb-8 mx-auto text-center bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden md:max-w-2xl p-4 transition-colors duration-200"
+      aria-label="Main Navigation"
+    >
+      <a
+        href="/"
+        class="text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 mr-4"
+        aria-label="Navigate to Summarization Tool"
+        >Summarize</a
+      >
+      <a
+        href="/compare.html"
+        class="text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 mr-4"
+        aria-label="Navigate to Comparison Tool"
+        >Compare</a
+      >
+      <a
+        href="/help.html"
+        class="text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 mr-4"
+        aria-label="Navigate to Help Page"
+        >Help</a
+      >
+    </nav>
+
     <div
       class="max-w-4xl mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden p-8 transition-colors duration-200"
+      aria-labelledby="help-title"
     >
-      <h1 class="text-3xl mb-6 text-gray-900 dark:text-white">
+      <h1 id="help-title" class="text-3xl mb-6 text-gray-900 dark:text-white">
         Help
       </h1>
 
       <div class="prose dark:prose-invert max-w-none">
         <p class="text-sm text-gray-600 dark:text-gray-400 mb-8">
-          Last Updated: <span id="currentDate"></span>
+          Last Updated: <span id="currentDate" aria-live="polite"></span>
         </p>
 
-        <section class="mb-8">
-          <p class="text-gray-700 dark:text-gray-300">
+        <section class="mb-8" aria-labelledby="intro-section">
+          <p id="intro-section" class="text-gray-700 dark:text-gray-300">
             Need some assistance using our Generative AI-powered privacy policy
             accessibility tool? We've got you covered!
           </p>
         </section>
 
-        <section class="mb-8">
-          <h2 class="text-2xl mb-4 text-gray-800 dark:text-gray-200">
+        <section class="mb-8" aria-labelledby="privacy-terms-section">
+          <h2
+            id="privacy-terms-section"
+            class="text-2xl mb-4 text-gray-800 dark:text-gray-200"
+          >
             Privacy &amp; Terms of Use
           </h2>
 
           <p class="text-gray-700 dark:text-gray-300 mb-4">
             If you wish to know more about the data we (don't) collect or what
-            appropriate usage looks like, please visit our <a href="policy.html"
-            >Privacy Policy</a> &amp; <a href="terms.html">Terms of Use</a>.
-            Usage of this tool is subject to our Terms of Use.
+            appropriate usage looks like, please visit our
+            <a href="policy.html" aria-label="Read our Privacy Policy"
+              >Privacy Policy</a
+            >
+            &amp;
+            <a href="terms.html" aria-label="Read our Terms of Use"
+              >Terms of Use</a
+            >. Usage of this tool is subject to our Terms of Use.
           </p>
         </section>
 
-        <section class="mb-8">
-          <h2 class="text-2xl mb-4 text-gray-800 dark:text-gray-200">
+        <section class="mb-8" aria-labelledby="summarization-tool-section">
+          <h2
+            id="summarization-tool-section"
+            class="text-2xl mb-4 text-gray-800 dark:text-gray-200"
+          >
             Summarization Tool Overview
           </h2>
 
@@ -96,7 +115,10 @@
             outlined below.
           </p>
 
-          <h3 class="text-xl mb-3 text-gray-800 dark:text-gray-200">
+          <h3
+            class="text-xl mb-3 text-gray-800 dark:text-gray-200"
+            id="age-section"
+          >
             Age
           </h3>
           <p class="text-gray-700 dark:text-gray-300 mb-4">
@@ -106,7 +128,10 @@
             backend to help it form a more relevant summary for your input age.
           </p>
 
-          <h3 class="text-xl mb-3 text-gray-800 dark:text-gray-200">
+          <h3
+            class="text-xl mb-3 text-gray-800 dark:text-gray-200"
+            id="education-section"
+          >
             Level of Education
           </h3>
           <p class="text-gray-700 dark:text-gray-300 mb-4">
@@ -118,7 +143,10 @@
             input, you do not need to provide your actual level of education.
           </p>
 
-          <h3 class="text-xl mb-3 text-gray-800 dark:text-gray-200">
+          <h3
+            class="text-xl mb-3 text-gray-800 dark:text-gray-200"
+            id="privacy-understanding-section"
+          >
             Privacy Understanding (1-10)
           </h3>
           <p class="text-gray-700 dark:text-gray-300 mb-4">
@@ -162,35 +190,40 @@
             Understanding may be most relevant to you.
           </p>
 
-          <h3 class="text-xl mb-3 text-gray-800 dark:text-gray-200">
+          <h3
+            class="text-xl mb-3 text-gray-800 dark:text-gray-200"
+            id="processing-speed-section"
+          >
             Processing Speed
           </h3>
           <p class="text-gray-700 dark:text-gray-300 mb-4">
-            The Processing Speed option provides a dropdown that allows you to
-            select between "Fast", "Medium", and "Slow". Under the hood, this
-            option is allowing you to select a Generative AI model that best
-            suits your needs. The "Fast" model is selected by default and
-            responds very quickly — a response should be provided in a couple of
-            seconds. The "Medium" model provides a larger, more capable
-            Generative AI system that should provide a more accurate response at
-            around one-fifth of the speed of the "Fast" model. The "Slow" model
-            provides maximum accuracy at around <one-fourteenth
-            >1/14</one-fourteenth> the speed of the "Fast" model.
+            You can choose between "Fast", "Medium", and "Slow" processing
+            speeds.
           </p>
 
-          <h3 class="text-xl mb-3 text-gray-800 dark:text-gray-200">
+          <h3
+            class="text-xl mb-3 text-gray-800 dark:text-gray-200"
+            id="privacy-policy-content-section"
+          >
             Privacy Policy Content
           </h3>
           <p class="text-gray-700 dark:text-gray-300 mb-4">
-            This area is a big text box where you can paste in the text contents
-            of the privacy policy you wish to summarize.
+            This is the input area where you paste the privacy policy you wish
+            to summarize.
           </p>
         </section>
 
-        <section class="mb-8">
-          <h2 class="text-2xl mb-4 text-gray-800 dark:text-gray-200">
+        <section class="mb-8" aria-labelledby="comparison-tool-section">
+          <h2
+            id="comparison-tool-section"
+            class="text-2xl mb-4 text-gray-800 dark:text-gray-200"
+          >
             Comparison Tool Overview
           </h2>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">
+            The Comparison Tool allows you to compare the contents of two
+            privacy policies.
+          </p>
           <p class="text-gray-700 dark:text-gray-300 mb-4">
             The Comparison Tool is designed to allow you to compare the contents
             of two privacy policies. There are a number of services available on
@@ -216,8 +249,8 @@
 
     <script>
       // Set current date
-      document.getElementById("currentDate").textContent = new Date()
-        .toLocaleDateString("en-US", {
+      document.getElementById("currentDate").textContent =
+        new Date().toLocaleDateString("en-US", {
           year: "numeric",
           month: "long",
           day: "numeric",
