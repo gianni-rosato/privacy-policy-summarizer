@@ -56,8 +56,8 @@ app.get("/protected-route", async (c: Context) => {
   const sessionId = await getSessionId(c.req.raw);
   if (!sessionId) {
     return c.html(`
-      <div class="mb-8 mx-auto text-center bg-yellow-100 dark:bg-yellow-800 rounded-xl shadow-md overflow-hidden md:max-w-2xl p-4">
-        <span class="text-yellow-800 dark:text-yellow-200">⚠️ You need to sign in to use this tool.</span>
+      <div class="mb-8 mx-auto text-center bg-blue-100 dark:bg-blue-900 rounded-xl shadow-md overflow-hidden md:max-w-2xl p-4">
+        <span class="text-blue-800 dark:text-blue-200">⚠️ You need to sign in to use this tool.</span>
         <div class="text-center bg-green-100 dark:bg-green-800 rounded-xl p-1">
           <a
             href="/oauth/signin"
