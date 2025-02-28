@@ -9,11 +9,11 @@ interface OpenRouterResponse {
 function getModelString(modelSpeed: string): string {
   switch (modelSpeed) {
     case "slow":
-      return "meta-llama/llama-3.1-405b-instruct:free"; // 100 t/s
+      return "meta-llama/llama-3.3-70b-instruct:free"; // 100 t/s
     case "medium":
-      return "meta-llama/llama-3.1-70b-instruct:free"; // 270 t/s
+      return "meta-llama/llama-3.2-11b-vision-instruct:free"; // 270 t/s
     default:
-      return "meta-llama/llama-3.2-3b-instruct:free"; // 1400 t/s
+      return "google/gemini-2.0-flash-lite-preview-02-05:free"; // 1400 t/s
   }
 }
 

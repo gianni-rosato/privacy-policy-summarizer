@@ -9,7 +9,7 @@ response = requests.post(
     "Authorization": f"Bearer {OPENROUTER_API_KEY}",
   },
   data=json.dumps({
-    "model": "meta-llama/llama-3.2-3b-instruct:free", # Optional
+    "model": "meta-llama/llama-3.3-70b-instruct:free", # Optional
     "messages": [
       {"role": "user", "content": "What is the meaning of life?"}
     ],
