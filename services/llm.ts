@@ -99,25 +99,13 @@ When comparing these two privacy policies, significant differences emerge in dat
 ---
 
 ## Quick Comparison 📋
-- **Data Collection**: DuckDuckGo vs Typical Search Engine
-  - DuckDuckGo collects only anonymous, temporary data
-  - Typical search engines collect extensive personal data including search history
-  - Winner: DuckDuckGo
-
-- **User Tracking**: DuckDuckGo vs Typical Search Engine
-  - DuckDuckGo does not track users across sites
-  - Typical search engines track user activity across multiple services
-  - Winner: DuckDuckGo
-
-- **Advertising Approach**: DuckDuckGo vs Typical Search Engine
-  - DuckDuckGo shows contextual ads based only on current search
-  - Typical search engines show personalized ads based on user profiles
-  - Winner: DuckDuckGo for privacy (no clear winner for effectiveness)
-
-- **Data Sharing**: DuckDuckGo vs Typical Search Engine
-  - DuckDuckGo shares minimal anonymous data with providers
-  - Typical search engines share data with numerous third parties
-  - Winner: DuckDuckGo
+- DuckDuckGo collects only anonymous, temporary data
+- Typical search engines collect extensive personal data including search history
+- DuckDuckGo does not track users across sites
+- Typical search engines track user activity across multiple services
+- DuckDuckGo shows contextual ads based only on current search
+- Typical search engines show personalized ads based on user profiles
+- Overall Winner: **DuckDuckGo**
 
 ---
 
