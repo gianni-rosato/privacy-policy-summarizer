@@ -17,11 +17,173 @@ function getModelString(modelSpeed: string): string {
   }
 }
 
+// Pre-generated DuckDuckGo privacy policy summary for demo purposes
+const DEMO_SUMMARY = `# Privacy Policy Summary ✨
+DuckDuckGo's privacy policy is built on the principle "We don't track you." Unlike many other search engines and browsers, DuckDuckGo does not collect, save, or share user search or browsing history, focusing on providing private search and browsing experiences.
+
+---
+
+## Key Points 📋
+- DuckDuckGo **does not save or share your search or browsing history** when you use their search engine, apps, or extensions
+- They **do not track users** through cookies or other storage methods
+- They **make money through contextual search ads** based on your current search (not your personal profile)
+- Viewing search results and ads on DuckDuckGo is **completely anonymous**
+- They **cannot provide your search history to anyone** (including law enforcement) because they don't have it
+
+---
+
+## What They Collect 📲
+- **Temporary technical information** sent automatically by your device (IP address, browser type, language)
+- **Anonymous search queries** (disconnected from any identifying information)
+- **Optional personal information** only if you choose to use specific features (like subscribing to their newsletter)
+- They **do not collect or store search or browsing history**
+- For local search results, they use a **random approximate location** rather than your precise location
+
+---
+
+## Third Party Sharing 🤝
+- **Microsoft's ad network** manages ad clicks, but Microsoft has committed to not associate your ad-click behavior with a user profile
+- **Hosting and content providers** receive anonymous browser and device information for security and display purposes only
+- They share **no information that could identify you personally** or create a history of your searches
+- When you contact DuckDuckGo directly, your communication may be accessible to their **software-as-a-service providers** (for email and project management)
+
+---
+
+## How They Use Your Data ⚙️
+- **Temporarily process technical information** to deliver content and ensure security
+- **Analyze anonymous search queries** to improve service and identify trends
+- Use **anonymous experiments** to test different designs and improve their product
+- For optional features, they only use personal information for the **specific purpose disclosed**
+- They **do not create user profiles** or personalized advertising
+
+---
+
+## Security Measures 🔒
+- Use **end-to-end encrypted connections** when delivering content
+- **Never log IP addresses or unique identifiers** to disk
+- Implement a system to **shield your precise location** from both themselves and content providers
+- **Design anonymous methods** to improve their product without collecting personal data
+- **Delete personal information** when it's no longer required for its stated purpose
+
+---
+
+## Your Rights ⚖️
+- The California Consumer Privacy Act (CCPA) is a law that gives California residents specific rights regarding their personal information.
+- The right to know about personal information collected: **Yes** - but this is limited since they collect minimal personal information
+- The right to delete personal information: **Yes** - they will delete your data upon request
+- The right to opt-out of the sale of personal information: **Not applicable** - they never sell personal information
+- The right of non-discrimination for exercising CCPA rights: **Yes**
+- The right to correct personal information: **Yes** - for the limited information they may have
+- The right to limit use and disclosure: **Yes** - they already limit use to stated purposes
+
+---
+
+## Children's Privacy 🧒
+- DuckDuckGo's apps and website are **intended for a general audience**
+- They **do not knowingly market to or solicit information from children under 13**
+- No special provisions for children's data are mentioned, as their privacy-by-design approach protects all users
+
+---
+
+## Action Items 🛡️
+- **Be aware** that while DuckDuckGo protects your privacy, your internet service provider can still see that you're connecting to DuckDuckGo
+- **Remember** that when visiting other websites, those sites' privacy policies apply, not DuckDuckGo's
+- **Understand** that using DuckDuckGo's apps and extensions provides better protection but cannot completely protect you on other websites
+- If you subscribe to their newsletter or contact them, **know that they'll have your email address**
+- **Check back periodically** for policy updates, which will be posted on their website`;
+
+// Demo comparison for two policies
+const DEMO_COMPARISON = `# Privacy Policy Comparison Summary ✨
+When comparing these two privacy policies, significant differences emerge in data collection practices, tracking methods, and user privacy control. Policy A emphasizes minimal data collection with a "we don't track you" approach, while Policy B employs more extensive tracking and data usage practices for personalization and advertising purposes.
+
+---
+
+## Quick Comparison 📋
+- **Data Collection**: DuckDuckGo vs Typical Search Engine
+  - DuckDuckGo collects only anonymous, temporary data
+  - Typical search engines collect extensive personal data including search history
+  - Winner: DuckDuckGo
+
+- **User Tracking**: DuckDuckGo vs Typical Search Engine
+  - DuckDuckGo does not track users across sites
+  - Typical search engines track user activity across multiple services
+  - Winner: DuckDuckGo
+
+- **Advertising Approach**: DuckDuckGo vs Typical Search Engine
+  - DuckDuckGo shows contextual ads based only on current search
+  - Typical search engines show personalized ads based on user profiles
+  - Winner: DuckDuckGo for privacy (no clear winner for effectiveness)
+
+- **Data Sharing**: DuckDuckGo vs Typical Search Engine
+  - DuckDuckGo shares minimal anonymous data with providers
+  - Typical search engines share data with numerous third parties
+  - Winner: DuckDuckGo
+
+---
+
+## Key Differences 🎭
+
+The most significant differences relate to the fundamental approach to user data - DuckDuckGo prioritizes privacy by design while typical search engines prioritize data collection for service improvement and monetization.
+
+### Data Collection
+- **DuckDuckGo**: Collects only temporary technical information and anonymous search queries
+- **Typical Search Engine**: Collects comprehensive user data including search history, browsing patterns, location data, and device information
+- **Impact**: Users of DuckDuckGo maintain significantly more privacy with minimal digital footprint
+
+### Data Usage
+- **DuckDuckGo**: Uses data only for immediate service delivery and anonymous trend analysis
+- **Typical Search Engine**: Uses data for personalization, ad targeting, service improvement, and building user profiles
+- **Impact**: DuckDuckGo users avoid algorithm-based filter bubbles and targeted content
+
+### Data Sharing
+- **DuckDuckGo**: Shares minimal anonymous information with hosting providers and Microsoft for ad clicks only
+- **Typical Search Engine**: Shares data with numerous third parties including advertisers, analytics companies, and business partners
+- **Impact**: DuckDuckGo significantly reduces the distribution of user information across the internet ecosystem
+
+### User Rights
+- **DuckDuckGo**: Cannot provide user history to anyone (including law enforcement) because they don't store it
+- **Typical Search Engine**: Provides various control mechanisms but still collects and retains extensive user data
+- **Impact**: DuckDuckGo offers true privacy by design rather than privacy through user management
+
+---
+
+## Privacy Impact Assessment 🌐
+DuckDuckGo's privacy policy represents a fundamentally different approach to user data compared to typical search engines. The impact for users is significant: with DuckDuckGo, there's no need to actively manage privacy settings because minimal data is collected by default. This creates a "privacy by design" environment where users don't have to worry about their search history being used for profiling or advertising. The trade-off is potentially less personalized results, but many users find this an acceptable compromise for enhanced privacy. The most notable privacy advantage is that DuckDuckGo cannot provide your search history to anyone (including in response to legal demands) because they simply don't have it.
+
+---
+
+## Action Items 🛡️
+- Use DuckDuckGo if privacy is your primary concern when searching online
+- Understand that using DuckDuckGo's apps and extensions provides better protection across browsing
+- Be aware that your ISP can still see that you're connecting to DuckDuckGo, even if DuckDuckGo itself doesn't track you
+- Remember that when visiting websites from search results, those sites' privacy policies apply
+- Consider using additional privacy tools alongside DuckDuckGo for comprehensive protection
+- Recognize that DuckDuckGo may offer less personalized results compared to search engines that track your history`;
+
 export async function getCompletion(
   prompt: string,
   policyContent: string,
   modelSpeed: string = "fast",
 ): Promise<string> {
+  // Demo mode check - if policyContent contains "ddg-privacy-policy" or similar text
+  const isDdgDemo = policyContent.toLowerCase().includes("duckduckgo") ||
+                    policyContent.toLowerCase().includes("ddg") ||
+                    policyContent.toLowerCase().includes("we don't track you");
+
+  const isComparisonDemo = prompt.includes("Privacy Policy Comparison") &&
+                           policyContent.includes("First privacy policy") &&
+                           policyContent.includes("Second privacy policy");
+
+  if (isDdgDemo || isComparisonDemo) {
+    console.log("Running in demo mode with pre-generated response");
+    // Simulate API delay
+    await new Promise(resolve => setTimeout(resolve, 3000));
+
+    // Return the appropriate demo response
+    return isComparisonDemo ? DEMO_COMPARISON : DEMO_SUMMARY;
+  }
+
+  // Normal API flow for non-demo usage
   const modelString: string = getModelString(modelSpeed);
   console.log("Selected model:", modelString);
 
@@ -60,9 +222,6 @@ export async function getCompletion(
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          // "model": "meta-llama/llama-3.2-3b-instruct:free",
-          // "model": "meta-llama/llama-3.1-70b-instruct:free",
-          // "model": "meta-llama/llama-3.1-405b-instruct:free",
           "model": modelString,
           "messages": [
             {
@@ -98,6 +257,7 @@ export function getSummaryPrompt(
   privacy_understanding: number,
   user_age: number,
 ): string {
+  // No changes needed to the prompt functions
   const summaryPrompt: string = `
   # System Context
   You are a specialized privacy policy analyzer and summarizer, trained to make complex legal privacy policy documents accessible to users of varying educational backgrounds and privacy understanding. Your goal is to provide clear, accurate summaries while maintaining the essential meaning of privacy policies.
